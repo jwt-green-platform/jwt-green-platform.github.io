@@ -2,595 +2,573 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JWT Green Platform — Demo</title>
-<meta name="description" content="Green Industrial Property Rights Platform — Test/Demo Site">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JWT Green Platform — Dream.ZONE</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --primary:#2E7D32;
-    --primary-deep:#173B1B;
-    --secondary:#4CAF50;
-    --accent:#8FCB92;
-    --bg:#F4F7F3;
-    --panel:#FFFFFF;
-    --ink:#12190F;
-    --gray:#5A655B;
-    --gray-soft:#8A948B;
-    --line:#E3E9E1;
-    --line-strong:#CFDACD;
-    --shadow:0 1px 2px rgba(15,30,15,.05), 0 10px 28px rgba(15,30,15,.06);
-    --shadow-hover:0 6px 14px rgba(15,30,15,.09), 0 24px 48px rgba(15,30,15,.12);
-    --radius-tag:6px;
-    --radius-card:14px;
-    --radius-panel:26px;
+    --dark-green:#1B4D3E;
+    --mid-green:#43A047;
+    --deep-green:#1B5E20;
+    --gold:#F5A623;
+    --bg-soft:#F5F9F5;
+    --border:#E8EBE8;
+    --text:#1A1A1A;
+    --text-muted:#6B7280;
   }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation-duration:.001ms !important; transition-duration:.001ms !important} }
-  body{
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
-    background:var(--bg);
-    color:var(--ink);
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  img{max-width:100%;display:block}
-  a{color:inherit;text-decoration:none}
-  ul{list-style:none}
-  button{font-family:inherit;cursor:pointer}
-  .container{max-width:1200px;margin:0 auto;padding:0 28px}
-  .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-  :focus-visible{outline:2px solid var(--primary-deep);outline-offset:3px;border-radius:4px}
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:'Inter',sans-serif; color:var(--text); background:#fff; }
+  a { text-decoration:none; cursor:pointer; }
+  button { font-family:'Inter',sans-serif; }
 
-  /* ===== Header ===== */
-  .site-header{
-    position:sticky;top:0;z-index:100;
-    background:rgba(244,247,243,.82);
-    backdrop-filter:saturate(160%) blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  .header-row{display:flex;align-items:center;justify-content:space-between;height:76px;gap:20px}
-  .brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:19px;letter-spacing:-.01em;color:var(--ink)}
-  .brand .mark{
-    width:32px;height:32px;border-radius:9px;flex:none;
-    background:linear-gradient(150deg, var(--primary-deep) 0%, var(--primary) 45%, var(--accent) 100%);
-    position:relative;box-shadow:inset 0 1px 1px rgba(255,255,255,.35);
-  }
-  .brand .mark::after{content:"";position:absolute;inset:8px;border-radius:5px;background:var(--panel);opacity:.92}
-  .brand small{font-weight:700;color:var(--secondary)}
+  /* ---- Nav ---- */
+  .topnav { display:flex; justify-content:center; gap:26px; padding:18px 20px; border-bottom:1px solid var(--border); font-weight:600; font-size:14px; flex-wrap:wrap; }
+  .topnav a { color:#B23A6B; }
+  .topnav a.active { color:var(--dark-green); }
 
-  nav.main-nav ul{display:flex;gap:2px;position:relative}
-  nav.main-nav a{
-    display:block;padding:10px 16px;border-radius:999px;
-    font-size:14.5px;font-weight:600;color:var(--gray);
-    transition:background .18s ease, color .18s ease;
-    position:relative;
-  }
-  nav.main-nav a:hover{color:var(--primary-deep)}
-  nav.main-nav a.active{color:var(--panel);background:var(--primary-deep)}
+  .page { display:none; }
+  .page.active { display:block; }
 
-  .nav-toggle{display:none;background:none;border:1px solid var(--line-strong);border-radius:9px;width:40px;height:40px;align-items:center;justify-content:center}
-  .nav-toggle span,.nav-toggle span::before,.nav-toggle span::after{content:"";display:block;width:18px;height:2px;background:var(--ink);position:relative;transition:.2s}
-  .nav-toggle span::before{position:absolute;top:-6px}
-  .nav-toggle span::after{position:absolute;top:6px}
+  /* ---- Region hero ---- */
+  .hero { padding:70px 24px; text-align:center; color:#fff; background:linear-gradient(135deg,var(--dark-green),var(--mid-green)); }
+  .hero h1 { font-family:'Orbitron',sans-serif; font-size:34px; margin:0 0 14px; }
+  .hero p { max-width:680px; margin:0 auto; opacity:.95; line-height:1.6; font-size:15.5px; }
 
-  /* ===== Hero (asymmetric, real stats not decoration) ===== */
-  .hero-wrap{padding:56px 0 0}
-  .hero-shell{
-    background:linear-gradient(155deg, var(--primary-deep) 0%, var(--primary) 58%, var(--secondary) 100%);
-    border-radius:var(--radius-panel);
-    position:relative;overflow:hidden;
-    padding:64px 56px;
-    display:grid;grid-template-columns:1.35fr 1fr;gap:48px;align-items:center;
-  }
-  .hero-shell::before{
-    content:"";position:absolute;inset:0;
-    background:radial-gradient(680px 380px at 88% -12%, rgba(255,255,255,.18), transparent 60%);
-    pointer-events:none;
-  }
-  .hero-text{position:relative;animation:riseIn .6s ease both}
-  @keyframes riseIn{from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:none}}
-  .kicker{
-    display:inline-flex;align-items:center;gap:8px;
-    font-size:13.5px;font-weight:600;color:#DDF3DE;
-    padding:6px 12px;border:1px solid rgba(255,255,255,.28);border-radius:999px;margin-bottom:22px;
-  }
-  .kicker .dot{width:6px;height:6px;border-radius:50%;background:#B7F5BA}
-  .hero-text h1{
-    font-size:clamp(32px,4.4vw,50px);font-weight:800;letter-spacing:-.02em;line-height:1.08;
-    max-width:16ch;color:#fff;margin-bottom:20px;
-  }
-  .hero-text p{font-size:17.5px;max-width:52ch;color:#E4F4E5;margin-bottom:32px}
-  .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+  .why-box { max-width:900px; margin:40px auto; padding:0 24px; }
+  .why-box .card { background:var(--bg-soft); border:1px solid var(--border); border-radius:12px; padding:28px 32px; }
+  .why-box h2 { font-family:'Orbitron',sans-serif; color:var(--dark-green); font-size:22px; margin-top:0; }
+  .why-box ul { line-height:1.9; color:var(--text-muted); padding-left:20px; }
 
-  .btn{
-    display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
-    padding:13px 26px;border-radius:999px;font-weight:700;font-size:14.5px;
-    border:1.5px solid transparent;transition:transform .16s ease, box-shadow .16s ease, background .16s ease, border-color .16s ease;
-  }
-  .btn:active{transform:translateY(0)}
-  .btn-solid{background:#fff;color:var(--primary-deep)}
-  .btn-solid:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.2)}
-  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
-  .btn-ghost:hover{background:rgba(255,255,255,.14);transform:translateY(-2px)}
-  .btn-dark{background:var(--primary-deep);color:#fff}
-  .btn-dark:hover{background:var(--ink);transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.18)}
-  .btn-line{background:transparent;color:var(--primary-deep);border-color:var(--line-strong)}
-  .btn-line:hover{border-color:var(--primary-deep);background:#EEF6EE}
-  .btn svg{width:14px;height:14px;flex:none}
+  /* ---- Dream.ZONE grid section ---- */
+  .dz-page-wrap { max-width:1280px; margin:0 auto; padding:40px 24px 80px; }
+  .dz-header { margin-bottom:36px; }
+  .dz-eyebrow { display:inline-block; color:var(--mid-green); font-size:13px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px; }
+  .dz-header h1 { font-family:'Orbitron',sans-serif; font-size:34px; font-weight:800; margin:0 0 10px; }
+  .dz-header p.dz-sub { font-size:15.5px; color:var(--text-muted); max-width:640px; margin:0; line-height:1.6; }
 
-  .hero-panel{
-    position:relative;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);
-    border-radius:18px;padding:26px;backdrop-filter:blur(6px);
-    animation:riseIn .7s .1s ease both;
-  }
-  .hero-panel .panel-label{font-size:12.5px;color:#DDF3DE;font-weight:600;margin-bottom:16px}
-  .hero-stat-row{display:flex;justify-content:space-between;align-items:baseline;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.16)}
-  .hero-stat-row:last-child{border-bottom:none}
-  .hero-stat-row .name{font-size:14.5px;color:#F0FAF0;font-weight:600}
-  .hero-stat-row .val{font-size:14px;color:#CDEFCE;font-weight:600}
+  .dz-stats { display:flex; flex-wrap:wrap; gap:18px; margin:28px 0 36px; }
+  .dz-stat { background:var(--bg-soft); border:1px solid #E3ECE3; border-radius:12px; padding:14px 22px; min-width:140px; }
+  .dz-stat .num { font-family:'Orbitron',sans-serif; font-size:22px; font-weight:700; color:var(--deep-green); display:block; line-height:1.2; }
+  .dz-stat .lbl { font-size:12.5px; color:var(--text-muted); font-weight:600; }
 
-  /* ===== Sections ===== */
-  section.block{padding:76px 0}
-  section.block.tight{padding-top:48px}
-  .block-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:36px;flex-wrap:wrap}
-  .eyebrow-plain{font-size:13.5px;color:var(--gray-soft);margin-bottom:8px;font-weight:600}
-  h2.block-title{font-size:27px;font-weight:800;letter-spacing:-.01em;color:var(--ink)}
-  .block-head .see-all{font-size:14px;font-weight:700;color:var(--primary-deep)}
-  .block-head .see-all::after{content:" →"}
+  .dz-filters { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:32px; border-bottom:1px solid #EDEDED; padding-bottom:22px; }
+  .dz-filter-btn { appearance:none; border:1px solid #E0E0E0; background:#fff; color:#444; font-size:14px; font-weight:600; padding:9px 20px; border-radius:30px; cursor:pointer; }
+  .dz-filter-btn:hover { border-color:var(--mid-green); color:var(--deep-green); }
+  .dz-filter-btn.active { background:var(--deep-green); border-color:var(--deep-green); color:#fff; }
 
-  /* ===== Region cards (home) ===== */
-  .region-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .region-card{
-    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-card);
-    padding:28px 26px;box-shadow:var(--shadow);
-    display:flex;flex-direction:column;gap:13px;
-    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-  }
-  .region-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);border-color:var(--line-strong)}
-  .region-card .flag{font-size:32px;line-height:1}
-  .region-card h3{font-size:20px;font-weight:700;color:var(--ink)}
-  .region-card p{color:var(--gray);font-size:14.5px}
-  .region-card .count{font-size:12.5px;font-weight:700;color:var(--primary-deep);background:#EAF6EA;display:inline-block;padding:4px 10px;border-radius:var(--radius-tag);width:fit-content}
-  .region-card .go{margin-top:auto;font-weight:700;color:var(--primary-deep);font-size:14px;display:inline-flex;align-items:center;gap:6px}
-  .region-card .go svg{width:13px;height:13px;transition:transform .15s ease}
-  .region-card:hover .go svg{transform:translateX(3px)}
+  .dz-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:26px; justify-content:start; }
+  .dz-card { background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 2px 14px rgba(0,0,0,.06); border:1px solid #F0F0F0; transition:transform .25s ease, box-shadow .25s ease; display:flex; flex-direction:column; }
+  .dz-card:hover { transform:translateY(-4px); box-shadow:0 14px 34px rgba(27,94,32,.12); }
+  .dz-card-top { height:8px; width:100%; }
+  .dz-card-top.region-italy { background:linear-gradient(90deg,#2E7D32,#66BB6A); }
+  .dz-card-top.region-europe { background:linear-gradient(90deg,#1565C0,#42A5F5); }
+  .dz-card-top.region-worldwide { background:linear-gradient(90deg,#1B5E20,#43A047); }
+  .dz-card-body { padding:22px 22px 24px; display:flex; flex-direction:column; gap:10px; flex:1; }
+  .dz-card-body h3 { font-family:'Orbitron',sans-serif; font-size:18px; font-weight:700; margin:0; }
+  .dz-badge { display:inline-flex; align-items:center; gap:6px; align-self:flex-start; font-size:11.5px; font-weight:700; letter-spacing:.3px; text-transform:uppercase; padding:5px 12px; border-radius:20px; color:#fff; }
+  .dz-badge.region-italy { background:#2E7D32; }
+  .dz-badge.region-europe { background:#1565C0; }
+  .dz-badge.region-worldwide { background:#1B5E20; }
+  .dz-pop { font-size:13.5px; font-weight:600; color:var(--mid-green); display:flex; align-items:center; gap:6px; }
+  .dz-desc { font-size:14px; color:var(--text-muted); line-height:1.6; margin:0; }
+  .dz-card-footer { padding:0 22px 22px; display:flex; justify-content:space-between; align-items:center; }
+  .dz-card-footer a.view { font-size:13.5px; font-weight:700; color:var(--deep-green); }
+  .dz-card-footer .edit-link { font-size:12px; color:#999; }
 
-  /* ===== Dream.ZONE cards ===== */
-  .dz-toolbar{
-    display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
-    margin-bottom:24px;padding:15px 20px;background:var(--panel);
-    border:1px solid var(--line);border-radius:10px;
-  }
-  .dz-toolbar .filter-note{font-size:13.5px;color:var(--gray)}
-  .dz-toolbar .filter-note b{color:var(--primary-deep)}
+  .empty-msg { text-align:center; color:#9CA3AF; padding:60px 20px; font-size:15px; }
 
-  .dz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
-  .dz-card{
-    background:var(--panel);border:1px solid var(--line);
-    border-radius:var(--radius-card);padding:22px;position:relative;
-    display:flex;flex-direction:column;gap:10px;
-    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-  }
-  .dz-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);border-color:var(--line-strong)}
-  .dz-card .rank{
-    position:absolute;top:18px;right:18px;font-size:12px;font-weight:700;color:var(--gray-soft);
-  }
-  .dz-card h3{font-size:18px;font-weight:700;padding-right:26px}
-  .dz-card h3 a:hover{color:var(--primary-deep)}
-  .tag-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-  .region-tag{
-    display:inline-block;color:#fff;padding:3px 11px;border-radius:var(--radius-tag);font-size:12px;font-weight:700;
-  }
-  .region-tag.italy{background:#2E7D32}
-  .region-tag.europe{background:#1E7FA0}
-  .region-tag.worldwide{background:#5F4FA0}
-  .pop-badge{font-size:12.5px;color:var(--gray);font-weight:600}
-  .dz-card .desc{color:var(--gray);font-size:14px}
-  .dz-card .read-more{margin-top:auto;font-size:13.5px;font-weight:700;color:var(--primary-deep);display:inline-flex;align-items:center;gap:5px}
-  .dz-card .read-more svg{width:12px;height:12px;transition:transform .15s ease}
-  .dz-card:hover .read-more svg{transform:translateX(3px)}
+  /* ---- Transaction options ---- */
+  .options-wrap { max-width:1100px; margin:20px auto 60px; padding:0 24px; }
+  .options-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; }
+  .opt-card { border:1px solid var(--border); border-radius:12px; padding:20px; border-top:4px solid var(--mid-green); }
+  .opt-card h4 { margin:8px 0; font-size:16px; }
+  .opt-card p { font-size:13.5px; color:var(--text-muted); line-height:1.5; }
 
-  .empty-state{
-    background:var(--panel);border:1px dashed var(--line-strong);border-radius:var(--radius-card);
-    padding:44px;text-align:center;color:var(--gray);
-  }
+  /* ---- Deal flow ---- */
+  .deal-flow-wrap { max-width:900px; margin:20px auto 80px; padding:0 24px; }
+  .deal-flow { background:var(--bg-soft); padding:30px; border-radius:12px; border:1px solid var(--border); }
+  .deal-flow h3 { color:var(--dark-green); margin-bottom:8px; font-size:22px; font-family:'Orbitron',sans-serif; }
+  .deal-flow p.lead { color:var(--text-muted); margin-bottom:20px; font-size:14.5px; }
+  .df-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .df-full { grid-column:1/-1; }
+  .df-field label { display:block; font-weight:600; margin-bottom:5px; font-size:13.5px; }
+  .df-field select, .df-field input, .df-field textarea { width:100%; padding:10px; border:1px solid #D0D0D0; border-radius:6px; font-size:14px; font-family:'Inter',sans-serif; }
+  .df-submit { background:var(--dark-green); color:#fff; padding:14px 40px; border:none; border-radius:30px; font-size:15px; font-weight:600; cursor:pointer; }
+  .df-submit:hover { background:#123329; }
+  .df-result { background:#E8F5E9; padding:24px; border-radius:8px; margin-top:26px; border-left:4px solid #2E7D32; display:none; }
+  .df-result h4 { color:var(--dark-green); margin:0 0 14px; font-size:18px; }
+  .df-result table { width:100%; border-collapse:collapse; margin-bottom:14px; }
+  .df-result td { padding:7px 8px; border-bottom:1px solid #D6E4D6; font-size:14px; }
+  .df-result td:first-child { font-weight:600; width:32%; }
+  .df-actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+  .df-btn { display:inline-block; padding:10px 22px; border-radius:20px; font-size:13.5px; font-weight:600; border:none; cursor:pointer; text-decoration:none; }
+  .df-btn.pdf { background:var(--dark-green); color:#fff; }
+  .df-btn.email { background:var(--gold); color:#1A1A1A; }
 
-  /* ===== Page header (inner pages) ===== */
-  .page-hero{padding:52px 0 8px}
-  .page-hero .flag-lg{font-size:38px;margin-bottom:8px}
-  .page-hero h1{font-size:34px;font-weight:800;letter-spacing:-.01em;color:var(--ink);margin-bottom:10px}
-  .page-hero p.lede{font-size:16px;color:var(--gray);max-width:64ch}
-  .breadcrumb{font-size:13px;color:var(--gray-soft);margin-bottom:16px}
-  .breadcrumb a{color:var(--primary-deep);font-weight:600}
-  .breadcrumb a:hover{text-decoration:underline}
+  /* ---- Admin / Editor ---- */
+  .admin-wrap { max-width:1000px; margin:0 auto; padding:40px 24px 80px; }
+  .admin-wrap h1 { font-family:'Orbitron',sans-serif; color:var(--dark-green); }
+  .admin-note { background:#FFF7E6; border:1px solid #F5D98B; padding:14px 18px; border-radius:8px; font-size:13.5px; color:#7A5D00; margin-bottom:24px; }
+  .admin-toolbar { display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap; }
+  .admin-btn { background:var(--dark-green); color:#fff; border:none; padding:10px 18px; border-radius:8px; font-size:13.5px; font-weight:600; cursor:pointer; }
+  .admin-btn.secondary { background:#fff; color:var(--dark-green); border:1px solid var(--dark-green); }
+  .admin-btn.danger { background:#C0392B; }
+  .admin-table { width:100%; border-collapse:collapse; margin-top:10px; }
+  .admin-table th, .admin-table td { border:1px solid var(--border); padding:8px 10px; font-size:13px; text-align:left; vertical-align:top; }
+  .admin-table th { background:var(--bg-soft); }
+  .admin-table input, .admin-table select, .admin-table textarea { width:100%; border:1px solid #ddd; border-radius:5px; padding:5px 6px; font-size:12.5px; font-family:'Inter',sans-serif; }
+  .admin-table textarea { min-height:50px; resize:vertical; }
+  .row-actions { display:flex; gap:6px; flex-direction:column; }
+  .row-actions button { font-size:11.5px; padding:5px 8px; border-radius:5px; border:none; cursor:pointer; }
+  .row-actions .save-row { background:var(--mid-green); color:#fff; }
+  .row-actions .delete-row { background:#C0392B; color:#fff; }
+  #import-file { display:none; }
 
-  /* ===== Single Dream.ZONE ===== */
-  .dz-single .badges{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 28px}
-  .pill{color:#fff;padding:7px 16px;border-radius:var(--radius-tag);font-size:13px;font-weight:700}
-  .pill.region{background:var(--secondary)}
-  .pill.pop{background:var(--primary-deep)}
-  .dz-body{font-size:16.5px;color:#233024;max-width:70ch}
-  .dz-body p + p{margin-top:14px}
-  .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px;padding-top:28px;border-top:1px solid var(--line)}
-  .back-link{display:inline-flex;align-items:center;gap:6px;margin-top:30px;font-weight:700;color:var(--primary-deep);font-size:14px}
-  .back-link:hover{text-decoration:underline}
+  footer { text-align:center; padding:30px; color:#999; font-size:13px; }
 
-  /* ===== Resources / references ===== */
-  .resource-list{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .resource-card{
-    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-card);
-    padding:22px;display:flex;flex-direction:column;gap:8px;
-    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-  }
-  .resource-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);border-color:var(--line-strong)}
-  .resource-card .rtitle{font-size:15px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:8px}
-  .resource-card .rtitle svg{width:13px;height:13px;color:var(--gray-soft);flex:none}
-  .resource-card .rdesc{font-size:13.5px;color:var(--gray)}
-  .resource-card .rurl{font-size:12.5px;color:var(--primary-deep);font-weight:600;word-break:break-all}
-
-  /* ===== Footer ===== */
-  .site-footer{background:var(--ink);color:#fff;padding:52px 0 34px;margin-top:24px}
-  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.12)}
-  .footer-brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;margin-bottom:12px}
-  .footer-brand .mark{width:26px;height:26px;border-radius:7px;background:linear-gradient(150deg, var(--primary) 0%, var(--accent) 100%);flex:none}
-  .footer-col p.desc{font-size:13.5px;color:rgba(255,255,255,.6);max-width:34ch}
-  .footer-col h4{font-size:13px;font-weight:700;color:rgba(255,255,255,.85);margin-bottom:14px;letter-spacing:.01em}
-  .footer-col ul{display:flex;flex-direction:column;gap:10px}
-  .footer-col a{font-size:13.5px;color:rgba(255,255,255,.6);transition:color .15s ease}
-  .footer-col a:hover{color:#fff}
-  .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding-top:24px}
-  .footer-bottom p{font-size:13px;color:rgba(255,255,255,.55)}
-  .footer-bottom p.tagline{font-size:11.5px;color:rgba(255,255,255,.35);margin-top:4px}
-
-  /* ===== Responsive ===== */
-  @media (max-width:960px){
-    .hero-shell{grid-template-columns:1fr;padding:48px 32px}
-    .hero-panel{order:2}
-    .region-grid{grid-template-columns:1fr}
-    .resource-list{grid-template-columns:1fr}
-    .footer-grid{grid-template-columns:1fr;gap:28px}
-  }
-  @media (max-width:720px){
-    .nav-toggle{display:flex}
-    nav.main-nav{
-      position:absolute;top:76px;left:0;right:0;background:var(--panel);
-      border-bottom:1px solid var(--line);
-      max-height:0;overflow:hidden;transition:max-height .25s ease;
-    }
-    nav.main-nav.open{max-height:340px}
-    nav.main-nav ul{flex-direction:column;padding:10px 28px 18px;gap:2px}
-    nav.main-nav a{padding:12px 10px}
-    .hero-wrap{padding:24px 0 0}
-    .hero-shell{border-radius:20px}
-    .footer-bottom{flex-direction:column;align-items:flex-start}
+  @media (max-width:640px){
+    .dz-header h1, .hero h1 { font-size:24px; }
+    .df-grid { grid-template-columns:1fr; }
   }
 </style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="container header-row">
-    <a href="#/" class="brand" data-link>
-      <span class="mark" aria-hidden="true"></span>
-      JWT<small>Green</small>
-    </a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false"><span></span></button>
-    <nav class="main-nav" id="mainNav" aria-label="Primary">
+<nav class="topnav">
+  <a data-page="home" class="active">Home</a>
+  <a data-page="italy">Italy</a>
+  <a data-page="europe">Europe</a>
+  <a data-page="worldwide">Worldwide</a>
+  <a data-page="all">Dream.ZONE Opportunities</a>
+  <a data-page="offer">Generate Offer</a>
+  <a data-page="admin">✏️ Edit Data</a>
+</nav>
+
+<!-- HOME -->
+<section class="page active" id="page-home">
+  <div class="hero">
+    <h1>JWT Green Platform</h1>
+    <p>Green Industrial Property Rights for the ecological transition — explore opportunities across Italy, Europe, and Worldwide, available for License, Sale, II-SRB, or JV-30/21 structures.</p>
+  </div>
+  <div class="why-box">
+    <div class="card">
+      <h2>About This Demo</h2>
+      <p style="color:var(--text-muted); line-height:1.7;">This is a standalone demo of the Dream.ZONE platform. All content below (Italy, Europe, Worldwide, and every Dream.ZONE entry) can be edited directly using the <strong>✏️ Edit Data</strong> tab — no code required. Changes are saved automatically in this browser.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ITALY -->
+<section class="page" id="page-italy">
+  <div class="hero">
+    <h1>Italy 🇮🇹 – Green Investment Opportunities</h1>
+    <p>Explore exclusive ecological-transition opportunities across Italy's regions. Strong industrial property rights available in manufacturing, agriculture, and renewable energy sectors.</p>
+  </div>
+  <div class="why-box">
+    <div class="card">
+      <h2>Why Italy?</h2>
+      <p style="color:var(--text-muted);">Italy offers deep-rooted industrial expertise combined with strong exclusive exploitation rights across its regions. GREEN Industrial Property rights are available in:</p>
       <ul>
-        <li><a href="#/" data-route="home" data-link>Home</a></li>
-        <li><a href="#/italy" data-route="italy" data-link>Italy</a></li>
-        <li><a href="#/europe" data-route="europe" data-link>Europe</a></li>
-        <li><a href="#/worldwide" data-route="worldwide" data-link>Worldwide</a></li>
-        <li><a href="#/opportunities" data-route="opportunities" data-link>Dream.ZONE Opportunities</a></li>
+        <li>🏭 Lombardy (Milan) – Advanced Manufacturing & Industrial Automation</li>
+        <li>🌾 Emilia-Romagna – Sustainable Agriculture & Food Technology</li>
+        <li>⚡ Piedmont (Turin) – Renewable Energy & Automotive Innovation</li>
+        <li>🏛️ Lazio (Rome) – Green Infrastructure & Smart City Solutions</li>
+        <li>🌊 Campania (Naples) – Water Treatment & Coastal Sustainability</li>
       </ul>
-    </nav>
-  </div>
-</header>
-
-<main id="app"></main>
-
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <div class="footer-brand"><span class="mark" aria-hidden="true"></span>JWT Green</div>
-        <p class="desc">A test/demo platform for green industrial property rights and ecological transition opportunities across Italy, Europe, and Worldwide.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Navigate</h4>
-        <ul>
-          <li><a href="#/" data-link>Home</a></li>
-          <li><a href="#/italy" data-link>Italy</a></li>
-          <li><a href="#/europe" data-link>Europe</a></li>
-          <li><a href="#/worldwide" data-link>Worldwide</a></li>
-          <li><a href="#/opportunities" data-link>Dream.ZONE Opportunities</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Project references</h4>
-        <ul>
-          <li><a href="https://www.expotv1.com/UoW_bp.html" target="_blank" rel="noopener noreferrer">Main project guide ↗</a></li>
-          <li><a href="http://www.mbgc-jwt.eu/" target="_blank" rel="noopener noreferrer">Reference website ↗</a></li>
-          <li><a href="https://www.expotv1.com/JWT_NFW-BB.htm" target="_blank" rel="noopener noreferrer">NFW/BB commercial framework ↗</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div>
-        <p>© <span id="year"></span> JWT Green Platform — Demo. All rights reserved.</p>
-        <p class="tagline">Green Industrial Property Rights — Ecological Transition Investment Platform (Test/Demo Site)</p>
-      </div>
     </div>
   </div>
-</footer>
+  <div class="dz-grid" id="grid-italy" style="max-width:1280px; margin:0 auto 60px; padding:0 24px;"></div>
+  <div id="options-italy"></div>
+</section>
+
+<!-- EUROPE -->
+<section class="page" id="page-europe">
+  <div class="hero">
+    <h1>Europe 🇪🇺 – Green Investment Opportunities</h1>
+    <p>Explore sustainable investment opportunities across European Union member states. Strong industrial property rights available in ES, FR, DE, GB, IT, and all EU territories.</p>
+  </div>
+  <div class="why-box">
+    <div class="card">
+      <h2>Why Europe?</h2>
+      <p style="color:var(--text-muted);">Europe offers a unified market with strong exclusive exploitation rights across 27 member states. GREEN Industrial Property rights are available in:</p>
+      <ul>
+        <li>🇪🇸 Spain – Solar Energy & Desalination</li>
+        <li>🇫🇷 France – Sustainable Agriculture & Water Treatment</li>
+        <li>🇩🇪 Germany – Renewable Energy & Smart Cities</li>
+        <li>🇬🇧 United Kingdom – Green Technology & Innovation</li>
+        <li>🇮🇹 Italy – Industrial Property & Manufacturing</li>
+      </ul>
+    </div>
+  </div>
+  <div class="dz-grid" id="grid-europe" style="max-width:1280px; margin:0 auto 60px; padding:0 24px;"></div>
+</section>
+
+<!-- WORLDWIDE -->
+<section class="page" id="page-worldwide">
+  <div class="hero">
+    <h1>Worldwide 🌍 – Global Rollout</h1>
+    <p>Green Industrial Property Rights across all 193 WIPO/UN Member States — connecting Brokers, Bookmakers, and Investors with exclusive ecological-transition opportunities.</p>
+  </div>
+  <div class="dz-grid" id="grid-worldwide" style="max-width:1280px; margin:40px auto 60px; padding:0 24px;"></div>
+</section>
+
+<!-- ALL / OPPORTUNITIES -->
+<section class="page" id="page-all">
+  <div class="dz-page-wrap">
+    <div class="dz-header">
+      <span class="dz-eyebrow">Green Industrial Property Rights</span>
+      <h1>Dream.ZONE Opportunities</h1>
+      <p class="dz-sub">Explore ecological-transition investment zones — each representing a region of 1,000,000+ people — available for License, Sale, II-SRB, or JV-30/21 structures.</p>
+    </div>
+    <div class="dz-stats">
+      <div class="dz-stat"><span class="num" id="stat-total">0</span><span class="lbl">Total Dream.ZONEs</span></div>
+      <div class="dz-stat"><span class="num" id="stat-pop">0</span><span class="lbl">Combined Population</span></div>
+      <div class="dz-stat"><span class="num" id="stat-italy">0</span><span class="lbl">Italy</span></div>
+      <div class="dz-stat"><span class="num" id="stat-europe">0</span><span class="lbl">Europe</span></div>
+      <div class="dz-stat"><span class="num" id="stat-worldwide">0</span><span class="lbl">Worldwide</span></div>
+    </div>
+    <div class="dz-filters">
+      <button class="dz-filter-btn active" data-filter="all">All Regions</button>
+      <button class="dz-filter-btn" data-filter="Italy">Italy</button>
+      <button class="dz-filter-btn" data-filter="Europe">Europe</button>
+      <button class="dz-filter-btn" data-filter="Worldwide">Worldwide</button>
+    </div>
+    <div class="dz-grid" id="dz-grid"></div>
+  </div>
+</section>
+
+<!-- GENERATE OFFER -->
+<section class="page" id="page-offer">
+  <div class="deal-flow-wrap">
+    <div class="deal-flow">
+      <h3>📄 Generate Your Offer</h3>
+      <p class="lead">Select a Dream.ZONE and transaction option to generate a draft offer ready for signature.</p>
+      <form id="df-form">
+        <div class="df-grid">
+          <div class="df-field df-full">
+            <label>Select a Dream.ZONE:</label>
+            <select id="df-zone"></select>
+          </div>
+          <div class="df-field df-full">
+            <label>Select Transaction Option:</label>
+            <select id="df-option">
+              <option value="License">📄 License – Annual Fee</option>
+              <option value="Sale">💰 Sale – Full Purchase</option>
+              <option value="II-SRB">🤝 II-SRB – Investment & Strategic Partnership</option>
+              <option value="JV-30/21">🏢 JV-30/21 – Joint Venture</option>
+            </select>
+          </div>
+          <div class="df-field"><label>Your Name:</label><input type="text" id="df-name" required placeholder="e.g., John Smith"></div>
+          <div class="df-field"><label>Company:</label><input type="text" id="df-company" required placeholder="e.g., Green Energy Corp"></div>
+          <div class="df-full"><button type="submit" class="df-submit">🚀 Generate Offer</button></div>
+        </div>
+      </form>
+      <div class="df-result" id="df-result">
+        <h4>✅ Offer Generated – Ready for Signature</h4>
+        <table>
+          <tr><td>Dream.ZONE:</td><td id="r-zone"></td></tr>
+          <tr><td>Transaction Option:</td><td id="r-option"></td></tr>
+          <tr><td>Client:</td><td id="r-name"></td></tr>
+          <tr><td>Company:</td><td id="r-company"></td></tr>
+          <tr><td>Description:</td><td id="r-desc"></td></tr>
+        </table>
+        <div class="df-actions">
+          <button class="df-btn pdf" onclick="printOffer()" type="button">📄 Download Offer (PDF)</button>
+          <a class="df-btn email" id="r-email" href="#">✉️ Send for Signature</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADMIN / EDIT DATA -->
+<section class="page" id="page-admin">
+  <div class="admin-wrap">
+    <h1>✏️ Edit Dream.ZONE Data</h1>
+    <div class="admin-note">Changes here are saved automatically in this browser (localStorage) and update every page instantly. Use <strong>Export</strong> to download a backup JSON file, or <strong>Import</strong> to restore one.</div>
+    <div class="admin-toolbar">
+      <button class="admin-btn" id="add-row-btn">+ Add New Dream.ZONE</button>
+      <button class="admin-btn secondary" id="export-btn">⬇️ Export JSON</button>
+      <button class="admin-btn secondary" id="import-btn">⬆️ Import JSON</button>
+      <input type="file" id="import-file" accept="application/json">
+      <button class="admin-btn danger" id="reset-btn">↺ Reset to Default Data</button>
+    </div>
+    <table class="admin-table">
+      <thead>
+        <tr><th style="width:14%">Name</th><th style="width:12%">Region</th><th style="width:12%">Population</th><th>Description</th><th style="width:8%">Actions</th></tr>
+      </thead>
+      <tbody id="admin-tbody"></tbody>
+    </table>
+  </div>
+</section>
+
+<footer>All rights reserved — JWT Green Platform (Editable Demo)</footer>
 
 <script>
-/* =========================================================
-   DATA — stands in for the "Dream.ZONE" custom post type.
-   region: Italy | Europe | Worldwide  (matches IT/EU/UN groupings)
-========================================================= */
-const DREAM_ZONES = [
-  {
-    slug: "bergamo", title: "Bergamo", region: "Italy", flagClass: "italy",
-    population: 1200000,
-    excerpt: "Green industrial property rights opportunity in Bergamo, Italy. Focus on ecological transition and renewable energy.",
-    body: [
-      "Bergamo represents a green industrial property rights opportunity centered on ecological transition and renewable energy generation.",
-      "A portfolio of patents covering renewable-energy processes is available for licensing, alongside supporting infrastructure sites identified for redevelopment.",
-      "The Dream.ZONE designation reflects the region's population base and its alignment with the platform's ecological transition criteria."
-    ]
-  },
-  {
-    slug: "novara", title: "Novara", region: "Italy", flagClass: "italy",
-    population: 1100000,
-    excerpt: "Ecological transition project in Novara, Italy. Patents and trade secrets available for licensing.",
-    body: [
-      "Novara's Dream.ZONE centers on sustainable agriculture and water treatment, two sectors with direct relevance to the region's economic base.",
-      "Patents and trade secrets tied to water treatment processes are available for licensing, with additional agricultural technology assets under evaluation.",
-      "This opportunity is grouped under the Italy (IT) region alongside Bergamo."
-    ]
-  },
-  {
-    slug: "berlin", title: "Berlin", region: "Europe", flagClass: "europe",
-    population: 3600000,
-    excerpt: "Green investment opportunity in Berlin, Germany. Focus on sustainable urban development and smart city technologies.",
-    body: [
-      "Berlin's Dream.ZONE focuses on sustainable urban development and smart-city technology deployment at metropolitan scale.",
-      "The opportunity spans property rights connected to smart-grid infrastructure, low-carbon building retrofits, and urban mobility systems.",
-      "As the platform's largest European entry to date, Berlin anchors the Europe (EU) region grouping."
-    ]
-  },
-  {
-    slug: "shanghai", title: "Shanghai", region: "Worldwide", flagClass: "worldwide",
-    population: 24000000,
-    excerpt: "Massive green industrial property rights opportunity in Shanghai, China. Focus on renewable energy and pollution control technologies.",
-    body: [
-      "Shanghai represents the platform's largest-scale Dream.ZONE, reflecting its position as a major global industrial and population center.",
-      "The opportunity is centered on renewable energy generation and pollution-control technologies suited to large-scale industrial deployment.",
-      "Shanghai is grouped under the Worldwide (UN) region, alongside future opportunities outside Italy and the EU."
-    ]
-  }
+const STORAGE_KEY = 'dreamzones_data_v1';
+
+const defaultZones = [
+  {id:1, name:"Shanghai", region:"Worldwide", pop:24000000, desc:"Massive green industrial property rights opportunity in Shanghai, China. Focus on renewable energy and pollution control technologies."},
+  {id:2, name:"Tokyo", region:"Worldwide", pop:14000000, desc:"Green industrial property rights in Tokyo, Japan. Focus on environmental technology and sustainable industry."},
+  {id:3, name:"Paris", region:"Europe", pop:11000000, desc:"Green industrial property rights in Paris, France. Focus on sustainable agriculture and water treatment systems."},
+  {id:4, name:"London", region:"Europe", pop:9500000, desc:"Green technology investment opportunity in London, UK. Focus on renewable energy innovation and smart infrastructure."},
+  {id:5, name:"New York", region:"Worldwide", pop:8400000, desc:"Green investment opportunity in New York, USA. Focus on sustainable urban development and green innovation."},
+  {id:6, name:"Madrid", region:"Europe", pop:6700000, desc:"Green investment opportunity in Madrid, Spain. Focus on solar energy and water desalination technology."},
+  {id:7, name:"Berlin", region:"Europe", pop:3600000, desc:"Green investment opportunity in Berlin, Germany. Focus on sustainable urban development and smart city technologies."},
+  {id:8, name:"Dubai", region:"Worldwide", pop:3500000, desc:"Green investment opportunity in Dubai, UAE. Focus on sustainable infrastructure and renewable energy."},
+  {id:9, name:"Milan", region:"Italy", pop:3200000, desc:"Industrial property and green manufacturing opportunity in Milan, Italy. Focus on sustainable production technology."},
+  {id:10, name:"Bergamo", region:"Italy", pop:1200000, desc:"Green industrial property rights opportunity in Bergamo, Italy. Focus on ecological transition and renewable energy. SIDR system for irrigation and drainage."},
+  {id:11, name:"Novara", region:"Italy", pop:1100000, desc:"Ecological transition project in Novara, Italy. Patents and trade secrets for sustainable agriculture and water treatment."},
+  {id:12, name:"Rho (Italy) – S3", region:"Italy", pop:1000000, desc:"Official Prospectus for the Rho Master Plan (S3). Asset Code: IT-S3-Rho_L. A GREEN Industrial Plan for the Ecological Transition."}
 ];
 
-const REGION_META = {
-  Italy:     { flag: "🇮🇹", tagline: "Green industrial property rights and ecological transition projects in Italy." },
-  Europe:    { flag: "🇪🇺", tagline: "Sustainable investment opportunities across European Union member states." },
-  Worldwide: { flag: "🌍", tagline: "Global green industrial property rights and environmental technology projects." }
-};
+function loadZones(){
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if(!raw){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultZones));
+    return JSON.parse(JSON.stringify(defaultZones));
+  }
+  try { return JSON.parse(raw); } catch(e){ return JSON.parse(JSON.stringify(defaultZones)); }
+}
+function saveZones(zones){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(zones));
+}
+let zones = loadZones();
 
-const POP_THRESHOLD = 1000000;
-const fmt = n => n.toLocaleString("en-US");
+function regionSlug(r){ return r.toLowerCase(); }
 
-const ICON_ARROW = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>`;
-const ICON_EXTERNAL = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>`;
-
-/* ===== Rendering helpers ===== */
-function dzCard(z, rank){
+function cardHTML(z){
   return `
     <div class="dz-card">
-      ${rank ? `<span class="rank">#${rank}</span>` : ""}
-      <h3><a href="#/dream-zone/${z.slug}" data-link>${z.title}</a></h3>
-      <div class="tag-row">
-        <span class="region-tag ${z.flagClass}">${z.region}</span>
-        <span class="pop-badge">Population: ${fmt(z.population)}</span>
+      <div class="dz-card-top region-${regionSlug(z.region)}"></div>
+      <div class="dz-card-body">
+        <span class="dz-badge region-${regionSlug(z.region)}">${z.region}</span>
+        <h3>${z.name}</h3>
+        <span class="dz-pop">👥 Population: ${Number(z.pop).toLocaleString()}</span>
+        <p class="dz-desc">${z.desc}</p>
       </div>
-      <p class="desc">${z.excerpt}</p>
-      <a class="read-more" href="#/dream-zone/${z.slug}" data-link>View opportunity ${ICON_ARROW}</a>
+      <div class="dz-card-footer">
+        <a class="view" data-page="offer">View Opportunity →</a>
+      </div>
     </div>`;
 }
 
-function emptyState(msg){
-  return `<div class="empty-state">${msg}</div>`;
+function renderRegionGrid(elId, region){
+  const el = document.getElementById(elId);
+  const list = zones.filter(z => z.region === region);
+  el.innerHTML = list.length ? list.map(cardHTML).join('') : `<div class="empty-msg">No Dream.ZONEs published for this region yet.</div>`;
 }
 
-/* ===== Views ===== */
-function viewHome(){
-  const counts = Object.fromEntries(
-    Object.keys(REGION_META).map(r => [r, DREAM_ZONES.filter(z=>z.region===r).length])
-  );
-  const topThree = [...DREAM_ZONES].sort((a,b)=>b.population-a.population).slice(0,4);
-
-  return `
-    <div class="hero-wrap container">
-      <section class="hero-shell">
-        <div class="hero-text">
-          <div class="kicker"><span class="dot"></span>Test / Demo Site — JWT</div>
-          <h1>Green industrial property rights, mapped by region.</h1>
-          <p>Explore ecological-transition investment opportunities across Italy, Europe, and Worldwide. Every Dream.ZONE below is a real population center matched against the platform's investment criteria.</p>
-          <div class="hero-actions">
-            <a href="#/opportunities" class="btn btn-solid" data-link>Explore Dream.ZONE Opportunities ${ICON_ARROW}</a>
-            <a href="http://www.mbgc-jwt.eu/" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">View reference site ${ICON_EXTERNAL}</a>
-          </div>
-        </div>
-        <div class="hero-panel">
-          <div class="panel-label">Live Dream.ZONE data</div>
-          ${topThree.map(z => `
-            <div class="hero-stat-row">
-              <span class="name">${z.title} · ${z.region}</span>
-              <span class="val">${fmt(z.population)}</span>
-            </div>`).join("")}
-        </div>
-      </section>
-    </div>
-
-    <section class="block container">
-      <div class="block-head">
-        <div>
-          <div class="eyebrow-plain">Browse by region</div>
-          <h2 class="block-title">Where opportunities live</h2>
-        </div>
-        <a href="#/opportunities" class="see-all" data-link>See all Dream.ZONEs</a>
-      </div>
-      <div class="region-grid">
-        ${Object.entries(REGION_META).map(([region, meta]) => `
-          <div class="region-card">
-            <span class="flag">${meta.flag}</span>
-            <h3>${region}</h3>
-            <p>${meta.tagline}</p>
-            <span class="count">${counts[region]} Dream.ZONE${counts[region]===1?"":"s"}</span>
-            <a class="go" href="#/${region.toLowerCase()}" data-link>View ${region} ${ICON_ARROW}</a>
-          </div>`).join("")}
-      </div>
-    </section>
-
-    <section class="block tight container">
-      <div class="block-head">
-        <div>
-          <div class="eyebrow-plain">Source material</div>
-          <h2 class="block-title">Project references</h2>
-        </div>
-      </div>
-      <div class="resource-list">
-        <a class="resource-card" href="https://www.expotv1.com/UoW_bp.html" target="_blank" rel="noopener noreferrer">
-          <span class="rtitle">Main project guide ${ICON_EXTERNAL}</span>
-          <span class="rdesc">The brief this demo was built from.</span>
-          <span class="rurl">expotv1.com/UoW_bp.html</span>
-        </a>
-        <a class="resource-card" href="http://www.mbgc-jwt.eu/" target="_blank" rel="noopener noreferrer">
-          <span class="rtitle">Reference website ${ICON_EXTERNAL}</span>
-          <span class="rdesc">The existing site this platform is modeled after.</span>
-          <span class="rurl">mbgc-jwt.eu</span>
-        </a>
-        <a class="resource-card" href="https://www.expotv1.com/JWT_NFW-BB.htm" target="_blank" rel="noopener noreferrer">
-          <span class="rtitle">NFW/BB commercial framework ${ICON_EXTERNAL}</span>
-          <span class="rdesc">Commercial framework referenced in the brief.</span>
-          <span class="rurl">expotv1.com/JWT_NFW-BB.htm</span>
-        </a>
-      </div>
-    </section>`;
+function renderAllGrid(filter){
+  const el = document.getElementById('dz-grid');
+  const list = zones.filter(z => filter === 'all' || z.region === filter);
+  el.innerHTML = list.length ? list.map(cardHTML).join('') : `<div class="empty-msg">No Dream.ZONEs found in this region yet.</div>`;
 }
 
-function viewRegion(region){
-  const meta = REGION_META[region];
-  const zones = DREAM_ZONES.filter(z => z.region === region).sort((a,b)=>b.population-a.population);
-  return `
-    <section class="page-hero container">
-      <div class="breadcrumb"><a href="#/" data-link>Home</a> / ${region}</div>
-      <div class="flag-lg">${meta.flag}</div>
-      <h1>${region}</h1>
-      <p class="lede">${meta.tagline}</p>
-    </section>
-    <section class="block container">
-      ${zones.length ? `<div class="dz-grid">${zones.map(z=>dzCard(z)).join("")}</div>` : emptyState(`No Dream.ZONEs found in ${region}.`)}
-      <a class="back-link" href="#/opportunities" data-link>${ICON_ARROW} View all Dream.ZONE Opportunities</a>
-    </section>`;
+function renderStats(){
+  const total = zones.length;
+  const pop = zones.reduce((s,z)=>s+Number(z.pop),0);
+  document.getElementById('stat-total').textContent = total;
+  document.getElementById('stat-pop').textContent = pop.toLocaleString();
+  document.getElementById('stat-italy').textContent = zones.filter(z=>z.region==='Italy').length;
+  document.getElementById('stat-europe').textContent = zones.filter(z=>z.region==='Europe').length;
+  document.getElementById('stat-worldwide').textContent = zones.filter(z=>z.region==='Worldwide').length;
 }
 
-function viewOpportunities(){
-  const filtered = DREAM_ZONES
-    .filter(z => z.population > POP_THRESHOLD)
-    .sort((a,b) => b.population - a.population);
-
-  return `
-    <section class="page-hero container">
-      <div class="breadcrumb"><a href="#/" data-link>Home</a> / Dream.ZONE Opportunities</div>
-      <h1>Dream.ZONE Opportunities</h1>
-      <p class="lede">All Dream.ZONE entries with population greater than ${fmt(POP_THRESHOLD)}, sorted by population — highest first.</p>
-    </section>
-    <section class="block container">
-      <div class="dz-toolbar">
-        <span class="filter-note">Filter active: <b>population &gt; ${fmt(POP_THRESHOLD)}</b> · showing ${filtered.length} of ${DREAM_ZONES.length} Dream.ZONEs</span>
-      </div>
-      ${filtered.length ? `<div class="dz-grid">${filtered.map((z,i)=>dzCard(z,i+1)).join("")}</div>` : emptyState("No Dream.ZONEs found with population over 1,000,000.")}
-    </section>`;
+function renderOfferDropdown(){
+  const sel = document.getElementById('df-zone');
+  sel.innerHTML = zones.map(z => `<option value="${z.name}">${z.name} (${z.region}) – ${Number(z.pop).toLocaleString()}</option>`).join('');
 }
 
-function viewSingle(slug){
-  const z = DREAM_ZONES.find(d => d.slug === slug);
-  if(!z){
-    return `<section class="block container">${emptyState("Dream.ZONE not found.")}<a class="back-link" href="#/opportunities" data-link>${ICON_ARROW} Back to Dream.ZONE Opportunities</a></section>`;
-  }
-  const mailSubject = encodeURIComponent(`Dream.ZONE inquiry — ${z.title}`);
-  const mailBody = encodeURIComponent(`I'd like more information on the ${z.title} Dream.ZONE (${z.region} region, population ${fmt(z.population)}).`);
-  return `
-    <section class="page-hero container dz-single">
-      <div class="breadcrumb"><a href="#/" data-link>Home</a> / <a href="#/${z.region.toLowerCase()}" data-link>${z.region}</a> / ${z.title}</div>
-      <h1>${z.title}</h1>
-      <div class="badges">
-        <span class="pill region">${z.region}</span>
-        <span class="pill pop">Population: ${fmt(z.population)}</span>
-      </div>
-      <div class="dz-body">
-        ${z.body.map(p => `<p>${p}</p>`).join("")}
-      </div>
-      <div class="cta-row">
-        <a class="btn btn-dark" href="mailto:opportunities@jwt-green-demo.example.com?subject=${mailSubject}&body=${mailBody}">Request Dream.ZONE details ${ICON_ARROW}</a>
-        <a class="btn btn-line" href="#/opportunities" data-link>Compare other opportunities</a>
-      </div>
-      <a class="back-link" href="#/opportunities" data-link>${ICON_ARROW} Back to Dream.ZONE Opportunities</a>
-    </section>`;
+function renderAll(){
+  renderRegionGrid('grid-italy', 'Italy');
+  renderRegionGrid('grid-europe', 'Europe');
+  renderRegionGrid('grid-worldwide', 'Worldwide');
+  const activeFilterBtn = document.querySelector('.dz-filter-btn.active');
+  renderAllGrid(activeFilterBtn ? activeFilterBtn.dataset.filter : 'all');
+  renderStats();
+  renderOfferDropdown();
+  renderAdminTable();
 }
 
-/* ===== Router ===== */
-const routes = {
-  "/":               { render: viewHome, key: "home" },
-  "/italy":          { render: () => viewRegion("Italy"), key: "italy" },
-  "/europe":         { render: () => viewRegion("Europe"), key: "europe" },
-  "/worldwide":      { render: () => viewRegion("Worldwide"), key: "worldwide" },
-  "/opportunities":  { render: viewOpportunities, key: "opportunities" }
-};
-
-function resolve(hash){
-  const path = (hash || "#/").replace(/^#/, "") || "/";
-  const singleMatch = path.match(/^\/dream-zone\/([a-z0-9-]+)$/);
-  if (singleMatch){
-    return { html: viewSingle(singleMatch[1]), key: null };
-  }
-  const route = routes[path] || routes["/"];
-  return { html: route.render(), key: route.key };
-}
-
-function setActiveNav(key){
-  document.querySelectorAll('nav.main-nav a[data-route]').forEach(a=>{
-    a.classList.toggle('active', a.dataset.route === key);
-  });
-}
-
-function render(){
-  const { html, key } = resolve(location.hash);
-  document.getElementById('app').innerHTML = html;
-  setActiveNav(key);
-  window.scrollTo({top:0, behavior:'auto'});
-  document.getElementById('mainNav').classList.remove('open');
-  document.getElementById('navToggle').setAttribute('aria-expanded','false');
-}
-
-window.addEventListener('hashchange', render);
-window.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('year').textContent = new Date().getFullYear();
-  if(!location.hash) location.hash = "#/";
-  render();
-
-  document.getElementById('navToggle').addEventListener('click', () => {
-    const nav = document.getElementById('mainNav');
-    const open = nav.classList.toggle('open');
-    document.getElementById('navToggle').setAttribute('aria-expanded', String(open));
+/* ---- Navigation ---- */
+document.querySelectorAll('.topnav a').forEach(link=>{
+  link.addEventListener('click', ()=>{
+    document.querySelectorAll('.topnav a').forEach(a=>a.classList.remove('active'));
+    link.classList.add('active');
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById('page-' + link.dataset.page).classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
   });
 });
+document.addEventListener('click', (e)=>{
+  if(e.target.matches('a.view[data-page]')){
+    e.preventDefault();
+    document.querySelector(`.topnav a[data-page="offer"]`).click();
+  }
+});
+
+/* ---- Filters on Opportunities page ---- */
+document.querySelectorAll('.dz-filter-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.dz-filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderAllGrid(btn.dataset.filter);
+  });
+});
+
+/* ---- Deal flow ---- */
+const optionDescriptions = {
+  "License": "License the patent for annual fee. Includes Know-How transfer and ongoing technical support.",
+  "Sale": "Full purchase of the Industrial Property Rights. Complete transfer of ownership and IP portfolio.",
+  "II-SRB": "Investment & Strategic Partnership with local development. Combine capital with local expertise.",
+  "JV-30/21": "Joint Venture with 30/21 structure. Full control to local partners who are loyal to the territory."
+};
+document.getElementById('df-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  const zone = document.getElementById('df-zone').value;
+  const option = document.getElementById('df-option').value;
+  const name = document.getElementById('df-name').value;
+  const company = document.getElementById('df-company').value;
+  const desc = optionDescriptions[option];
+  document.getElementById('r-zone').textContent = zone;
+  document.getElementById('r-option').textContent = option;
+  document.getElementById('r-name').textContent = name;
+  document.getElementById('r-company').textContent = company;
+  document.getElementById('r-desc').textContent = desc;
+  document.getElementById('r-email').href = `mailto:?subject=Draft Offer - ${encodeURIComponent(zone)}&body=Please review the attached draft offer for ${encodeURIComponent(zone)}.`;
+  document.getElementById('df-result').style.display = 'block';
+  document.getElementById('df-result').scrollIntoView({behavior:'smooth', block:'nearest'});
+});
+function printOffer(){
+  const zone = document.getElementById('r-zone').textContent;
+  const option = document.getElementById('r-option').textContent;
+  const name = document.getElementById('r-name').textContent;
+  const company = document.getElementById('r-company').textContent;
+  const desc = document.getElementById('r-desc').textContent;
+  const date = new Date().toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'});
+  const html = `<html><head><title>Draft Offer</title></head><body style="font-family:Arial,sans-serif; padding:40px;">
+    <h2 style="color:#1B4D3E;">JWT Green Platform — Draft Offer</h2><hr style="margin:20px 0;">
+    <table style="width:100%; border-collapse:collapse;">
+      <tr><td style="padding:8px; font-weight:bold; width:30%;">Dream.ZONE:</td><td style="padding:8px;">${zone}</td></tr>
+      <tr><td style="padding:8px; font-weight:bold;">Transaction Option:</td><td style="padding:8px;">${option}</td></tr>
+      <tr><td style="padding:8px; font-weight:bold;">Client:</td><td style="padding:8px;">${name}</td></tr>
+      <tr><td style="padding:8px; font-weight:bold;">Company:</td><td style="padding:8px;">${company}</td></tr>
+      <tr><td style="padding:8px; font-weight:bold;">Description:</td><td style="padding:8px;">${desc}</td></tr>
+      <tr><td style="padding:8px; font-weight:bold;">Date:</td><td style="padding:8px;">${date}</td></tr>
+    </table>
+    <p style="margin-top:30px; font-size:12px; color:#666;">This is a draft offer generated by the JWT Green Platform. All rights reserved.</p>
+  </body></html>`;
+  const w = window.open('', '_blank');
+  w.document.write(html); w.document.close(); w.focus();
+  setTimeout(()=>w.print(), 250);
+}
+
+/* ---- Admin table ---- */
+function renderAdminTable(){
+  const tbody = document.getElementById('admin-tbody');
+  tbody.innerHTML = zones.map(z => `
+    <tr data-id="${z.id}">
+      <td><input type="text" class="f-name" value="${z.name.replace(/"/g,'&quot;')}"></td>
+      <td>
+        <select class="f-region">
+          <option value="Italy" ${z.region==='Italy'?'selected':''}>Italy</option>
+          <option value="Europe" ${z.region==='Europe'?'selected':''}>Europe</option>
+          <option value="Worldwide" ${z.region==='Worldwide'?'selected':''}>Worldwide</option>
+        </select>
+      </td>
+      <td><input type="number" class="f-pop" value="${z.pop}"></td>
+      <td><textarea class="f-desc">${z.desc.replace(/</g,'&lt;')}</textarea></td>
+      <td class="row-actions">
+        <button class="save-row">Save</button>
+        <button class="delete-row">Delete</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+document.getElementById('admin-tbody').addEventListener('click', (e)=>{
+  const row = e.target.closest('tr');
+  if(!row) return;
+  const id = Number(row.dataset.id);
+  if(e.target.classList.contains('save-row')){
+    const idx = zones.findIndex(z=>z.id===id);
+    if(idx > -1){
+      zones[idx] = {
+        id: id,
+        name: row.querySelector('.f-name').value.trim() || 'Untitled',
+        region: row.querySelector('.f-region').value,
+        pop: Number(row.querySelector('.f-pop').value) || 0,
+        desc: row.querySelector('.f-desc').value.trim()
+      };
+      saveZones(zones);
+      renderAll();
+      alert('Saved.');
+    }
+  }
+  if(e.target.classList.contains('delete-row')){
+    if(confirm('Delete this Dream.ZONE entry?')){
+      zones = zones.filter(z=>z.id!==id);
+      saveZones(zones);
+      renderAll();
+    }
+  }
+});
+
+document.getElementById('add-row-btn').addEventListener('click', ()=>{
+  const newId = zones.length ? Math.max(...zones.map(z=>z.id)) + 1 : 1;
+  zones.push({id:newId, name:"New Dream.ZONE", region:"Italy", pop:1000000, desc:"Describe this opportunity here."});
+  saveZones(zones);
+  renderAll();
+  document.querySelector(`.topnav a[data-page="admin"]`).click();
+});
+
+document.getElementById('reset-btn').addEventListener('click', ()=>{
+  if(confirm('Reset all data back to the original 12 sample Dream.ZONEs? This cannot be undone.')){
+    zones = JSON.parse(JSON.stringify(defaultZones));
+    saveZones(zones);
+    renderAll();
+  }
+});
+
+document.getElementById('export-btn').addEventListener('click', ()=>{
+  const blob = new Blob([JSON.stringify(zones, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'dreamzones-backup.json';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+document.getElementById('import-btn').addEventListener('click', ()=>{
+  document.getElementById('import-file').click();
+});
+document.getElementById('import-file').addEventListener('change', (e)=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(evt){
+    try{
+      const imported = JSON.parse(evt.target.result);
+      if(Array.isArray(imported)){
+        zones = imported;
+        saveZones(zones);
+        renderAll();
+        alert('Import successful.');
+      } else {
+        alert('Invalid file format.');
+      }
+    } catch(err){
+      alert('Could not read file: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+});
+
+renderAll();
 </script>
+
 </body>
 </html>
