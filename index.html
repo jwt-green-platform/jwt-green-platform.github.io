@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>JWT Green Platform — Dream.ZONE</title>
+<title>JWT Green Platform — Green Industrial Property Rights</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -22,38 +22,98 @@
   body { margin:0; font-family:'Inter',sans-serif; color:var(--text); background:#fff; }
   a { text-decoration:none; cursor:pointer; }
   button { font-family:'Inter',sans-serif; }
+  h1,h2,h3,h4 { font-family:'Orbitron',sans-serif; margin:0; }
 
   /* ---- Nav ---- */
-  .topnav { display:flex; justify-content:center; gap:26px; padding:18px 20px; border-bottom:1px solid var(--border); font-weight:600; font-size:14px; flex-wrap:wrap; }
-  .topnav a { color:#B23A6B; }
-  .topnav a.active { color:var(--dark-green); }
+  .topnav { display:flex; justify-content:space-between; align-items:center; padding:16px 40px; border-bottom:1px solid var(--border); position:sticky; top:0; background:#fff; z-index:100; }
+  .brand { font-family:'Orbitron',sans-serif; font-weight:800; font-size:16px; color:var(--dark-green); letter-spacing:.5px; }
+  .nav-links { display:flex; gap:30px; font-weight:600; font-size:14px; }
+  .nav-links a { color:#6B7280; }
+  .nav-links a.active, .nav-links a:hover { color:var(--dark-green); }
 
   .page { display:none; }
   .page.active { display:block; }
 
-  /* ---- Region hero ---- */
+  /* ---- Hero (homepage) ---- */
+  .home-hero { padding:100px 24px 90px; text-align:center; background:linear-gradient(180deg,#F5F9F5 0%, #FFFFFF 100%); }
+  .home-hero .eyebrow { display:inline-block; color:var(--mid-green); font-weight:700; font-size:13px; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:18px; }
+  .home-hero h1 { font-size:44px; line-height:1.2; max-width:820px; margin:0 auto 20px; color:var(--text); }
+  .home-hero h1 span { color:var(--deep-green); }
+  .home-hero p { max-width:620px; margin:0 auto 34px; color:var(--text-muted); font-size:16.5px; line-height:1.6; }
+  .hero-ctas { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  .btn { display:inline-block; padding:14px 30px; border-radius:8px; font-weight:600; font-size:14.5px; border:none; cursor:pointer; }
+  .btn-primary { background:var(--deep-green); color:#fff; }
+  .btn-primary:hover { background:#123f19; }
+  .btn-outline { background:#fff; color:var(--deep-green); border:1.5px solid var(--deep-green); }
+  .btn-outline:hover { background:var(--bg-soft); }
+
+  /* ---- Trust stat bar ---- */
+  .trust-bar { display:flex; justify-content:center; gap:60px; flex-wrap:wrap; padding:36px 24px; background:var(--dark-green); }
+  .trust-item { text-align:center; color:#fff; }
+  .trust-item .num { font-size:26px; font-weight:800; font-family:'Orbitron',sans-serif; color:var(--gold); }
+  .trust-item .lbl { font-size:12px; letter-spacing:.5px; text-transform:uppercase; opacity:.85; margin-top:4px; }
+
+  /* ---- Section shell ---- */
+  .section { max-width:1200px; margin:0 auto; padding:80px 24px; }
+  .section-head { text-align:center; max-width:640px; margin:0 auto 50px; }
+  .section-head .eyebrow { color:var(--mid-green); font-weight:700; font-size:12.5px; letter-spacing:1.5px; text-transform:uppercase; }
+  .section-head h2 { font-size:30px; margin:10px 0 12px; }
+  .section-head p { color:var(--text-muted); font-size:15px; line-height:1.6; }
+
+  /* ---- What we do ---- */
+  .services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:26px; }
+  .service-card { padding:30px 26px; border:1px solid var(--border); border-radius:14px; transition:box-shadow .2s ease, transform .2s ease; }
+  .service-card:hover { box-shadow:0 16px 34px rgba(27,77,62,.1); transform:translateY(-4px); }
+  .service-icon { font-size:28px; margin-bottom:16px; }
+  .service-card h3 { font-size:17px; margin-bottom:10px; color:var(--text); }
+  .service-card p { font-size:13.8px; color:var(--text-muted); line-height:1.6; margin:0; }
+
+  /* ---- Region cards (home) ---- */
+  .region-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:26px; }
+  .region-card { border-radius:16px; overflow:hidden; border:1px solid var(--border); display:flex; flex-direction:column; }
+  .region-banner { height:100px; display:flex; align-items:center; justify-content:center; font-size:34px; color:#fff; }
+  .region-banner.italy { background:linear-gradient(135deg,#2E7D32,#66BB6A); }
+  .region-banner.europe { background:linear-gradient(135deg,#1565C0,#42A5F5); }
+  .region-banner.worldwide { background:linear-gradient(135deg,#1B5E20,#43A047); }
+  .region-body { padding:24px; display:flex; flex-direction:column; gap:10px; flex:1; }
+  .region-body h3 { font-size:19px; }
+  .region-body p { color:var(--text-muted); font-size:13.8px; line-height:1.6; margin:0; flex:1; }
+  .region-body a.link { font-size:13.5px; font-weight:700; color:var(--deep-green); }
+
+  /* ---- Transaction options (shared) ---- */
+  .options-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; }
+  .opt-card { border:1px solid var(--border); border-radius:12px; padding:22px; border-top:4px solid var(--mid-green); }
+  .opt-card h4 { margin:8px 0; font-size:16px; }
+  .opt-card p { font-size:13.5px; color:var(--text-muted); line-height:1.5; margin:0; }
+
+  /* ---- Final CTA (home) ---- */
+  .final-cta { background:var(--deep-green); padding:70px 24px; text-align:center; color:#fff; }
+  .final-cta h2 { font-size:28px; margin-bottom:14px; }
+  .final-cta p { color:#DCEFDD; margin-bottom:28px; font-size:15px; }
+
+  /* ---- Region page hero ---- */
   .hero { padding:70px 24px; text-align:center; color:#fff; background:linear-gradient(135deg,var(--dark-green),var(--mid-green)); }
-  .hero h1 { font-family:'Orbitron',sans-serif; font-size:34px; margin:0 0 14px; }
+  .hero h1 { font-size:32px; margin:0 0 14px; }
   .hero p { max-width:680px; margin:0 auto; opacity:.95; line-height:1.6; font-size:15.5px; }
 
   .why-box { max-width:900px; margin:40px auto; padding:0 24px; }
   .why-box .card { background:var(--bg-soft); border:1px solid var(--border); border-radius:12px; padding:28px 32px; }
-  .why-box h2 { font-family:'Orbitron',sans-serif; color:var(--dark-green); font-size:22px; margin-top:0; }
-  .why-box ul { line-height:1.9; color:var(--text-muted); padding-left:20px; }
+  .why-box h2 { color:var(--dark-green); font-size:22px; margin-bottom:14px; }
+  .why-box ul { line-height:1.9; color:var(--text-muted); padding-left:20px; margin:0; }
 
-  /* ---- Dream.ZONE grid section ---- */
-  .dz-page-wrap { max-width:1280px; margin:0 auto; padding:40px 24px 80px; }
-  .dz-header { margin-bottom:36px; }
+  /* ---- Dream.ZONE grid ---- */
+  .dz-page-wrap { max-width:1280px; margin:0 auto; padding:20px 24px 60px; }
+  .dz-header { margin-bottom:36px; text-align:center; }
   .dz-eyebrow { display:inline-block; color:var(--mid-green); font-size:13px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px; }
-  .dz-header h1 { font-family:'Orbitron',sans-serif; font-size:34px; font-weight:800; margin:0 0 10px; }
-  .dz-header p.dz-sub { font-size:15.5px; color:var(--text-muted); max-width:640px; margin:0; line-height:1.6; }
+  .dz-header h1 { font-size:32px; margin:0 0 10px; }
+  .dz-header p.dz-sub { font-size:15.5px; color:var(--text-muted); max-width:640px; margin:0 auto; line-height:1.6; }
 
-  .dz-stats { display:flex; flex-wrap:wrap; gap:18px; margin:28px 0 36px; }
-  .dz-stat { background:var(--bg-soft); border:1px solid #E3ECE3; border-radius:12px; padding:14px 22px; min-width:140px; }
-  .dz-stat .num { font-family:'Orbitron',sans-serif; font-size:22px; font-weight:700; color:var(--deep-green); display:block; line-height:1.2; }
+  .dz-stats { display:flex; flex-wrap:wrap; gap:18px; margin:28px 0 36px; justify-content:center; }
+  .dz-stat { background:var(--bg-soft); border:1px solid #E3ECE3; border-radius:12px; padding:14px 22px; min-width:140px; text-align:center; }
+  .dz-stat .num { font-size:22px; font-weight:700; color:var(--deep-green); display:block; line-height:1.2; }
   .dz-stat .lbl { font-size:12.5px; color:var(--text-muted); font-weight:600; }
 
-  .dz-filters { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:32px; border-bottom:1px solid #EDEDED; padding-bottom:22px; }
+  .dz-filters { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:32px; border-bottom:1px solid #EDEDED; padding-bottom:22px; justify-content:center; }
   .dz-filter-btn { appearance:none; border:1px solid #E0E0E0; background:#fff; color:#444; font-size:14px; font-weight:600; padding:9px 20px; border-radius:30px; cursor:pointer; }
   .dz-filter-btn:hover { border-color:var(--mid-green); color:var(--deep-green); }
   .dz-filter-btn.active { background:var(--deep-green); border-color:var(--deep-green); color:#fff; }
@@ -66,101 +126,185 @@
   .dz-card-top.region-europe { background:linear-gradient(90deg,#1565C0,#42A5F5); }
   .dz-card-top.region-worldwide { background:linear-gradient(90deg,#1B5E20,#43A047); }
   .dz-card-body { padding:22px 22px 24px; display:flex; flex-direction:column; gap:10px; flex:1; }
-  .dz-card-body h3 { font-family:'Orbitron',sans-serif; font-size:18px; font-weight:700; margin:0; }
-  .dz-badge { display:inline-flex; align-items:center; gap:6px; align-self:flex-start; font-size:11.5px; font-weight:700; letter-spacing:.3px; text-transform:uppercase; padding:5px 12px; border-radius:20px; color:#fff; }
+  .dz-card-body h3 { font-size:18px; }
+  .dz-badge { display:inline-flex; align-items:center; gap:6px; align-self:flex-start; font-size:11.5px; font-weight:700; letter-spacing:.3px; text-transform:uppercase; padding:5px 12px; border-radius:20px; color:#fff; font-family:'Inter',sans-serif; }
   .dz-badge.region-italy { background:#2E7D32; }
   .dz-badge.region-europe { background:#1565C0; }
   .dz-badge.region-worldwide { background:#1B5E20; }
   .dz-pop { font-size:13.5px; font-weight:600; color:var(--mid-green); display:flex; align-items:center; gap:6px; }
   .dz-desc { font-size:14px; color:var(--text-muted); line-height:1.6; margin:0; }
-  .dz-card-footer { padding:0 22px 22px; display:flex; justify-content:space-between; align-items:center; }
-  .dz-card-footer a.view { font-size:13.5px; font-weight:700; color:var(--deep-green); }
-  .dz-card-footer .edit-link { font-size:12px; color:#999; }
+  .dz-card-footer { padding:0 22px 22px; }
+  .dz-card-footer a.view { font-size:13.5px; font-weight:700; color:var(--deep-green); border-bottom:2px solid transparent; }
+  .dz-card-footer a.view:hover { border-color:var(--deep-green); }
 
-  .empty-msg { text-align:center; color:#9CA3AF; padding:60px 20px; font-size:15px; }
+  .empty-msg { text-align:center; color:#9CA3AF; padding:60px 20px; font-size:15px; grid-column:1/-1; }
 
-  /* ---- Transaction options ---- */
-  .options-wrap { max-width:1100px; margin:20px auto 60px; padding:0 24px; }
-  .options-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; }
-  .opt-card { border:1px solid var(--border); border-radius:12px; padding:20px; border-top:4px solid var(--mid-green); }
-  .opt-card h4 { margin:8px 0; font-size:16px; }
-  .opt-card p { font-size:13.5px; color:var(--text-muted); line-height:1.5; }
-
-  /* ---- Deal flow ---- */
-  .deal-flow-wrap { max-width:900px; margin:20px auto 80px; padding:0 24px; }
-  .deal-flow { background:var(--bg-soft); padding:30px; border-radius:12px; border:1px solid var(--border); }
-  .deal-flow h3 { color:var(--dark-green); margin-bottom:8px; font-size:22px; font-family:'Orbitron',sans-serif; }
-  .deal-flow p.lead { color:var(--text-muted); margin-bottom:20px; font-size:14.5px; }
+  /* ---- Deal flow (embedded in Worldwide page) ---- */
+  .deal-flow-wrap { max-width:900px; margin:60px auto 0; padding:0 24px; }
+  .deal-flow { background:var(--bg-soft); padding:34px; border-radius:14px; border:1px solid var(--border); }
+  .deal-flow h3 { color:var(--dark-green); margin-bottom:8px; font-size:22px; }
+  .deal-flow p.lead { color:var(--text-muted); margin-bottom:22px; font-size:14.5px; }
   .df-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
   .df-full { grid-column:1/-1; }
   .df-field label { display:block; font-weight:600; margin-bottom:5px; font-size:13.5px; }
-  .df-field select, .df-field input, .df-field textarea { width:100%; padding:10px; border:1px solid #D0D0D0; border-radius:6px; font-size:14px; font-family:'Inter',sans-serif; }
+  .df-field select, .df-field input { width:100%; padding:11px; border:1px solid #D0D0D0; border-radius:6px; font-size:14px; font-family:'Inter',sans-serif; }
   .df-submit { background:var(--dark-green); color:#fff; padding:14px 40px; border:none; border-radius:30px; font-size:15px; font-weight:600; cursor:pointer; }
   .df-submit:hover { background:#123329; }
   .df-result { background:#E8F5E9; padding:24px; border-radius:8px; margin-top:26px; border-left:4px solid #2E7D32; display:none; }
   .df-result h4 { color:var(--dark-green); margin:0 0 14px; font-size:18px; }
   .df-result table { width:100%; border-collapse:collapse; margin-bottom:14px; }
-  .df-result td { padding:7px 8px; border-bottom:1px solid #D6E4D6; font-size:14px; }
+  .df-result td { padding:7px 8px; border-bottom:1px solid #D6E4D6; font-size:14px; font-family:'Inter',sans-serif; }
   .df-result td:first-child { font-weight:600; width:32%; }
   .df-actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
   .df-btn { display:inline-block; padding:10px 22px; border-radius:20px; font-size:13.5px; font-weight:600; border:none; cursor:pointer; text-decoration:none; }
   .df-btn.pdf { background:var(--dark-green); color:#fff; }
   .df-btn.email { background:var(--gold); color:#1A1A1A; }
 
-  /* ---- Admin / Editor ---- */
-  .admin-wrap { max-width:1000px; margin:0 auto; padding:40px 24px 80px; }
-  .admin-wrap h1 { font-family:'Orbitron',sans-serif; color:var(--dark-green); }
-  .admin-note { background:#FFF7E6; border:1px solid #F5D98B; padding:14px 18px; border-radius:8px; font-size:13.5px; color:#7A5D00; margin-bottom:24px; }
-  .admin-toolbar { display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap; }
-  .admin-btn { background:var(--dark-green); color:#fff; border:none; padding:10px 18px; border-radius:8px; font-size:13.5px; font-weight:600; cursor:pointer; }
-  .admin-btn.secondary { background:#fff; color:var(--dark-green); border:1px solid var(--dark-green); }
-  .admin-btn.danger { background:#C0392B; }
-  .admin-table { width:100%; border-collapse:collapse; margin-top:10px; }
-  .admin-table th, .admin-table td { border:1px solid var(--border); padding:8px 10px; font-size:13px; text-align:left; vertical-align:top; }
-  .admin-table th { background:var(--bg-soft); }
-  .admin-table input, .admin-table select, .admin-table textarea { width:100%; border:1px solid #ddd; border-radius:5px; padding:5px 6px; font-size:12.5px; font-family:'Inter',sans-serif; }
-  .admin-table textarea { min-height:50px; resize:vertical; }
-  .row-actions { display:flex; gap:6px; flex-direction:column; }
-  .row-actions button { font-size:11.5px; padding:5px 8px; border-radius:5px; border:none; cursor:pointer; }
-  .row-actions .save-row { background:var(--mid-green); color:#fff; }
-  .row-actions .delete-row { background:#C0392B; color:#fff; }
-  #import-file { display:none; }
+  /* ---- Dream.ZONE Generator (calculator) ---- */
+  .gen-wrap { max-width:1000px; margin:0 auto; padding:40px 24px 80px; }
+  .gen-intro { text-align:center; max-width:700px; margin:0 auto 40px; }
+  .gen-intro h1 { font-size:30px; margin-bottom:12px; }
+  .gen-intro p { color:var(--text-muted); font-size:15px; line-height:1.6; }
+  .gen-form { background:var(--bg-soft); border:1px solid var(--border); border-radius:14px; padding:30px; display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .gen-field label { display:block; font-weight:600; font-size:13.5px; margin-bottom:6px; }
+  .gen-field select, .gen-field input { width:100%; padding:11px; border:1px solid #D0D0D0; border-radius:6px; font-size:14px; font-family:'Inter',sans-serif; }
+  .gen-full { grid-column:1/-1; }
+  .gen-submit { background:var(--dark-green); color:#fff; padding:14px 36px; border:none; border-radius:30px; font-weight:600; font-size:15px; cursor:pointer; }
+  .gen-submit:hover { background:#123329; }
+  .gen-note { font-size:12px; color:#999; margin-top:6px; }
 
-  footer { text-align:center; padding:30px; color:#999; font-size:13px; }
+  .gen-results { margin-top:36px; display:none; }
+  .gen-summary { background:#fff; border:1px solid var(--border); border-radius:12px; padding:22px 26px; margin-bottom:20px; }
+  .gen-summary .code { font-family:'Orbitron',sans-serif; font-size:18px; color:var(--deep-green); font-weight:700; }
+  .gen-summary .zone-val { font-size:14px; color:var(--text-muted); margin-top:6px; }
+  .gen-table { width:100%; border-collapse:collapse; }
+  .gen-table th, .gen-table td { border:1px solid var(--border); padding:10px 12px; font-size:13px; text-align:left; }
+  .gen-table th { background:var(--dark-green); color:#fff; font-weight:600; }
+  .gen-table tr:nth-child(even) { background:var(--bg-soft); }
+  .gen-disclaimer { font-size:11.5px; color:#999; margin-top:16px; font-style:italic; }
 
-  @media (max-width:640px){
-    .dz-header h1, .hero h1 { font-size:24px; }
+  footer { text-align:center; padding:34px; color:#999; font-size:13px; border-top:1px solid var(--border); margin-top:60px; }
+
+  @media (max-width:768px){
+    .home-hero h1 { font-size:30px; }
+    .nav-links { display:none; }
     .df-grid { grid-template-columns:1fr; }
+    .dz-header h1, .hero h1 { font-size:24px; }
   }
 </style>
 </head>
 <body>
 
 <nav class="topnav">
-  <a data-page="home" class="active">Home</a>
-  <a data-page="italy">Italy</a>
-  <a data-page="europe">Europe</a>
-  <a data-page="worldwide">Worldwide</a>
-  <a data-page="all">Dream.ZONE Opportunities</a>
-  <a data-page="offer">Generate Offer</a>
-  <a data-page="admin">✏️ Edit Data</a>
+  <div class="brand">JWT GREEN PLATFORM</div>
+  <div class="nav-links">
+    <a data-page="home" class="active">Home</a>
+    <a data-page="italy">Italy</a>
+    <a data-page="europe">Europe</a>
+    <a data-page="worldwide">Worldwide</a>
+    <a data-page="all">Dream.ZONE Opportunities</a>
+    <a data-page="generator">Dream.ZONE Generator</a>
+  </div>
 </nav>
 
-<!-- HOME -->
+<!-- ============ HOME ============ -->
 <section class="page active" id="page-home">
-  <div class="hero">
-    <h1>JWT Green Platform</h1>
-    <p>Green Industrial Property Rights for the ecological transition — explore opportunities across Italy, Europe, and Worldwide, available for License, Sale, II-SRB, or JV-30/21 structures.</p>
-  </div>
-  <div class="why-box">
-    <div class="card">
-      <h2>About This Demo</h2>
-      <p style="color:var(--text-muted); line-height:1.7;">This is a standalone demo of the Dream.ZONE platform. All content below (Italy, Europe, Worldwide, and every Dream.ZONE entry) can be edited directly using the <strong>✏️ Edit Data</strong> tab — no code required. Changes are saved automatically in this browser.</p>
+  <div class="home-hero">
+    <span class="eyebrow">Green Industrial Property Rights &nbsp;·&nbsp; M&amp;A Advisory</span>
+    <h1>Connecting <span>Green Industrial Property</span> with Global Capital</h1>
+    <p>We structure and broker exclusive GREEN Industrial Property Rights — patents, licenses, and trade secrets — into investable Dream.ZONE opportunities across Italy, Europe, and Worldwide.</p>
+    <div class="hero-ctas">
+      <button class="btn btn-primary" onclick="goTo('all')">Explore Dream.ZONE Opportunities</button>
+      <button class="btn btn-outline" onclick="goTo('worldwide')">View Worldwide Program</button>
     </div>
+  </div>
+
+  <div class="trust-bar">
+    <div class="trust-item"><div class="num" id="home-stat-total">12</div><div class="lbl">Dream.ZONEs</div></div>
+    <div class="trust-item"><div class="num">193</div><div class="lbl">UN / WIPO States in Scope</div></div>
+    <div class="trust-item"><div class="num">4</div><div class="lbl">Deal Structures</div></div>
+    <div class="trust-item"><div class="num" id="home-stat-pop">87.2M+</div><div class="lbl">Population Covered</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="eyebrow">What We Do</span>
+      <h2>Structuring GREEN IP Into Investable Assets</h2>
+      <p>Every Dream.ZONE pairs a defined territory of 1,000,000+ people with a specific ecological-transition opportunity, ready for License, Sale, II-SRB, or Joint Venture structures.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🌍</div>
+        <h3>Territorial Structuring</h3>
+        <p>We identify and package regional GREEN Industrial Property opportunities into clearly defined, investable Dream.ZONEs.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🤝</div>
+        <h3>Broker &amp; Investor Access</h3>
+        <p>We connect Brokers, Bookmakers, and Private Equity investors directly with validated opportunities and originating rights-holders.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📄</div>
+        <h3>Deal Structuring</h3>
+        <p>License, Sale, II-SRB, or JV-30/21 — we support the full path from indicative interest to signature-ready draft offers.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔗</div>
+        <h3>Referral Network</h3>
+        <p>Our Broker/Bookmaker framework rewards deal origination, aligning incentives across the full transaction lifecycle.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0;">
+    <div class="section-head">
+      <span class="eyebrow">Our Markets</span>
+      <h2>Explore Opportunities By Region</h2>
+    </div>
+    <div class="region-grid">
+      <div class="region-card">
+        <div class="region-banner italy">🇮🇹</div>
+        <div class="region-body">
+          <h3>Italy</h3>
+          <p>Advanced manufacturing, sustainable agriculture, and renewable energy across Lombardy, Piedmont, Lazio, and Campania.</p>
+          <a class="link" onclick="goTo('italy')">Explore Italy →</a>
+        </div>
+      </div>
+      <div class="region-card">
+        <div class="region-banner europe">🇪🇺</div>
+        <div class="region-body">
+          <h3>Europe</h3>
+          <p>Unified access across 27 member states, from Spanish solar to German smart-city infrastructure.</p>
+          <a class="link" onclick="goTo('europe')">Explore Europe →</a>
+        </div>
+      </div>
+      <div class="region-card">
+        <div class="region-banner worldwide">🌍</div>
+        <div class="region-body">
+          <h3>Worldwide</h3>
+          <p>Global rollout across all 193 WIPO/UN member states, with featured opportunities in major metropolitan zones.</p>
+          <a class="link" onclick="goTo('worldwide')">Explore Worldwide →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0;">
+    <div class="section-head">
+      <span class="eyebrow">Transaction Structures</span>
+      <h2>Flexible Deal Options</h2>
+    </div>
+    <div class="options-grid" id="home-options"></div>
+  </div>
+
+  <div class="final-cta">
+    <h2>Ready to Explore a Dream.ZONE?</h2>
+    <p>Connect with us to review opportunities and available transaction structures.</p>
+    <button class="btn btn-primary" style="background:#fff; color:var(--deep-green);" onclick="goTo('worldwide')">Get Started</button>
   </div>
 </section>
 
-<!-- ITALY -->
+<!-- ============ ITALY ============ -->
 <section class="page" id="page-italy">
   <div class="hero">
     <h1>Italy 🇮🇹 – Green Investment Opportunities</h1>
@@ -169,21 +313,19 @@
   <div class="why-box">
     <div class="card">
       <h2>Why Italy?</h2>
-      <p style="color:var(--text-muted);">Italy offers deep-rooted industrial expertise combined with strong exclusive exploitation rights across its regions. GREEN Industrial Property rights are available in:</p>
       <ul>
-        <li>🏭 Lombardy (Milan) – Advanced Manufacturing & Industrial Automation</li>
-        <li>🌾 Emilia-Romagna – Sustainable Agriculture & Food Technology</li>
-        <li>⚡ Piedmont (Turin) – Renewable Energy & Automotive Innovation</li>
-        <li>🏛️ Lazio (Rome) – Green Infrastructure & Smart City Solutions</li>
-        <li>🌊 Campania (Naples) – Water Treatment & Coastal Sustainability</li>
+        <li>🏭 Lombardy (Milan) – Advanced Manufacturing &amp; Industrial Automation</li>
+        <li>🌾 Emilia-Romagna – Sustainable Agriculture &amp; Food Technology</li>
+        <li>⚡ Piedmont (Turin) – Renewable Energy &amp; Automotive Innovation</li>
+        <li>🏛️ Lazio (Rome) – Green Infrastructure &amp; Smart City Solutions</li>
+        <li>🌊 Campania (Naples) – Water Treatment &amp; Coastal Sustainability</li>
       </ul>
     </div>
   </div>
   <div class="dz-grid" id="grid-italy" style="max-width:1280px; margin:0 auto 60px; padding:0 24px;"></div>
-  <div id="options-italy"></div>
 </section>
 
-<!-- EUROPE -->
+<!-- ============ EUROPE ============ -->
 <section class="page" id="page-europe">
   <div class="hero">
     <h1>Europe 🇪🇺 – Green Investment Opportunities</h1>
@@ -192,55 +334,35 @@
   <div class="why-box">
     <div class="card">
       <h2>Why Europe?</h2>
-      <p style="color:var(--text-muted);">Europe offers a unified market with strong exclusive exploitation rights across 27 member states. GREEN Industrial Property rights are available in:</p>
       <ul>
-        <li>🇪🇸 Spain – Solar Energy & Desalination</li>
-        <li>🇫🇷 France – Sustainable Agriculture & Water Treatment</li>
-        <li>🇩🇪 Germany – Renewable Energy & Smart Cities</li>
-        <li>🇬🇧 United Kingdom – Green Technology & Innovation</li>
-        <li>🇮🇹 Italy – Industrial Property & Manufacturing</li>
+        <li>🇪🇸 Spain – Solar Energy &amp; Desalination</li>
+        <li>🇫🇷 France – Sustainable Agriculture &amp; Water Treatment</li>
+        <li>🇩🇪 Germany – Renewable Energy &amp; Smart Cities</li>
+        <li>🇬🇧 United Kingdom – Green Technology &amp; Innovation</li>
+        <li>🇮🇹 Italy – Industrial Property &amp; Manufacturing</li>
       </ul>
     </div>
   </div>
   <div class="dz-grid" id="grid-europe" style="max-width:1280px; margin:0 auto 60px; padding:0 24px;"></div>
 </section>
 
-<!-- WORLDWIDE -->
+<!-- ============ WORLDWIDE (includes Generate Offer) ============ -->
 <section class="page" id="page-worldwide">
   <div class="hero">
     <h1>Worldwide 🌍 – Global Rollout</h1>
     <p>Green Industrial Property Rights across all 193 WIPO/UN Member States — connecting Brokers, Bookmakers, and Investors with exclusive ecological-transition opportunities.</p>
   </div>
-  <div class="dz-grid" id="grid-worldwide" style="max-width:1280px; margin:40px auto 60px; padding:0 24px;"></div>
-</section>
+  <div class="dz-grid" id="grid-worldwide" style="max-width:1280px; margin:40px auto 20px; padding:0 24px;"></div>
 
-<!-- ALL / OPPORTUNITIES -->
-<section class="page" id="page-all">
-  <div class="dz-page-wrap">
-    <div class="dz-header">
-      <span class="dz-eyebrow">Green Industrial Property Rights</span>
-      <h1>Dream.ZONE Opportunities</h1>
-      <p class="dz-sub">Explore ecological-transition investment zones — each representing a region of 1,000,000+ people — available for License, Sale, II-SRB, or JV-30/21 structures.</p>
+  <div class="section" style="padding-top:20px;">
+    <div class="section-head">
+      <span class="eyebrow">Transaction Structures</span>
+      <h2>Available Options Worldwide</h2>
     </div>
-    <div class="dz-stats">
-      <div class="dz-stat"><span class="num" id="stat-total">0</span><span class="lbl">Total Dream.ZONEs</span></div>
-      <div class="dz-stat"><span class="num" id="stat-pop">0</span><span class="lbl">Combined Population</span></div>
-      <div class="dz-stat"><span class="num" id="stat-italy">0</span><span class="lbl">Italy</span></div>
-      <div class="dz-stat"><span class="num" id="stat-europe">0</span><span class="lbl">Europe</span></div>
-      <div class="dz-stat"><span class="num" id="stat-worldwide">0</span><span class="lbl">Worldwide</span></div>
-    </div>
-    <div class="dz-filters">
-      <button class="dz-filter-btn active" data-filter="all">All Regions</button>
-      <button class="dz-filter-btn" data-filter="Italy">Italy</button>
-      <button class="dz-filter-btn" data-filter="Europe">Europe</button>
-      <button class="dz-filter-btn" data-filter="Worldwide">Worldwide</button>
-    </div>
-    <div class="dz-grid" id="dz-grid"></div>
+    <div class="options-grid" id="worldwide-options"></div>
   </div>
-</section>
 
-<!-- GENERATE OFFER -->
-<section class="page" id="page-offer">
+  <!-- Generate Offer, now embedded directly in Worldwide -->
   <div class="deal-flow-wrap">
     <div class="deal-flow">
       <h3>📄 Generate Your Offer</h3>
@@ -256,7 +378,7 @@
             <select id="df-option">
               <option value="License">📄 License – Annual Fee</option>
               <option value="Sale">💰 Sale – Full Purchase</option>
-              <option value="II-SRB">🤝 II-SRB – Investment & Strategic Partnership</option>
+              <option value="II-SRB">🤝 II-SRB – Investment &amp; Strategic Partnership</option>
               <option value="JV-30/21">🏢 JV-30/21 – Joint Venture</option>
             </select>
           </div>
@@ -281,61 +403,110 @@
       </div>
     </div>
   </div>
+  <div style="height:70px;"></div>
 </section>
 
-<!-- ADMIN / EDIT DATA -->
-<section class="page" id="page-admin">
-  <div class="admin-wrap">
-    <h1>✏️ Edit Dream.ZONE Data</h1>
-    <div class="admin-note">Changes here are saved automatically in this browser (localStorage) and update every page instantly. Use <strong>Export</strong> to download a backup JSON file, or <strong>Import</strong> to restore one.</div>
-    <div class="admin-toolbar">
-      <button class="admin-btn" id="add-row-btn">+ Add New Dream.ZONE</button>
-      <button class="admin-btn secondary" id="export-btn">⬇️ Export JSON</button>
-      <button class="admin-btn secondary" id="import-btn">⬆️ Import JSON</button>
-      <input type="file" id="import-file" accept="application/json">
-      <button class="admin-btn danger" id="reset-btn">↺ Reset to Default Data</button>
+<!-- ============ ALL / DREAM.ZONE OPPORTUNITIES ============ -->
+<section class="page" id="page-all">
+  <div class="dz-page-wrap">
+    <div class="dz-header">
+      <span class="dz-eyebrow">Green Industrial Property Rights</span>
+      <h1>Dream.ZONE Opportunities</h1>
+      <p class="dz-sub">Explore ecological-transition investment zones — each representing a region of 1,000,000+ people — available for License, Sale, II-SRB, or JV-30/21 structures.</p>
     </div>
-    <table class="admin-table">
-      <thead>
-        <tr><th style="width:14%">Name</th><th style="width:12%">Region</th><th style="width:12%">Population</th><th>Description</th><th style="width:8%">Actions</th></tr>
-      </thead>
-      <tbody id="admin-tbody"></tbody>
-    </table>
+    <div class="dz-stats">
+      <div class="dz-stat"><span class="num" id="stat-total">0</span><span class="lbl">Total Dream.ZONEs</span></div>
+      <div class="dz-stat"><span class="num" id="stat-pop">0</span><span class="lbl">Combined Population</span></div>
+      <div class="dz-stat"><span class="num" id="stat-italy">0</span><span class="lbl">Italy</span></div>
+      <div class="dz-stat"><span class="num" id="stat-europe">0</span><span class="lbl">Europe</span></div>
+      <div class="dz-stat"><span class="num" id="stat-worldwide">0</span><span class="lbl">Worldwide</span></div>
+    </div>
+    <div class="dz-filters">
+      <button class="dz-filter-btn active" data-filter="all">All Regions</button>
+      <button class="dz-filter-btn" data-filter="Italy">Italy</button>
+      <button class="dz-filter-btn" data-filter="Europe">Europe</button>
+      <button class="dz-filter-btn" data-filter="Worldwide">Worldwide</button>
+    </div>
+    <div class="dz-grid" id="dz-grid"></div>
   </div>
 </section>
 
-<footer>All rights reserved — JWT Green Platform (Editable Demo)</footer>
+<!-- ============ DREAM.ZONE GENERATOR (Calculator) ============ -->
+<section class="page" id="page-generator">
+  <div class="gen-wrap">
+    <div class="gen-intro">
+      <span class="dz-eyebrow">Dynamic Pricing Engine</span>
+      <h1>Dream.ZONE Generator</h1>
+      <p>Select a country, city, population, and product to generate indicative valuations across all four transaction structures — License, Sale, II-SRB, and JV-30/21 — based on the EUWEB pricing model.</p>
+    </div>
+
+    <form class="gen-form" id="gen-form">
+      <div class="gen-field">
+        <label>Target Country:</label>
+        <select id="gen-country"></select>
+      </div>
+      <div class="gen-field">
+        <label>Central City:</label>
+        <input type="text" id="gen-city" placeholder="e.g., Milan" required>
+      </div>
+      <div class="gen-field">
+        <label>City Population (Millions):</label>
+        <input type="number" id="gen-pop" step="0.1" min="0.1" value="1" required>
+        <div class="gen-note">Country economic factor auto-fills below; edit population per city as needed.</div>
+      </div>
+      <div class="gen-field">
+        <label>Product:</label>
+        <select id="gen-product"></select>
+      </div>
+      <div class="gen-field gen-full" id="masterplan-field" style="display:none;">
+        <label>Master Plan Value (M€, range 2–15):</label>
+        <input type="number" id="gen-masterplan-val" min="2" max="15" step="0.5" value="8">
+      </div>
+      <div class="gen-full">
+        <button type="submit" class="gen-submit">⚙️ Generate Dream.ZONE Valuation</button>
+      </div>
+    </form>
+
+    <div class="gen-results" id="gen-results">
+      <div class="gen-summary">
+        <div class="code" id="gen-code-summary">—</div>
+        <div class="zone-val" id="gen-zone-val">—</div>
+      </div>
+      <table class="gen-table">
+        <thead>
+          <tr><th>Structure</th><th>Contract 100%</th><th>Buy 1%</th><th>BB fee 0.1%</th><th>BB fee</th><th>Asset Code</th></tr>
+        </thead>
+        <tbody id="gen-table-body"></tbody>
+      </table>
+      <p class="gen-disclaimer">Indicative valuations generated from the EUWEB pricing model. Figures are for preliminary discussion only and do not constitute a binding offer.</p>
+    </div>
+  </div>
+</section>
+
+<footer>All rights reserved — JWT Green Platform</footer>
 
 <script>
-const STORAGE_KEY = 'dreamzones_data_v1';
-
-const defaultZones = [
-  {id:1, name:"Shanghai", region:"Worldwide", pop:24000000, desc:"Massive green industrial property rights opportunity in Shanghai, China. Focus on renewable energy and pollution control technologies."},
-  {id:2, name:"Tokyo", region:"Worldwide", pop:14000000, desc:"Green industrial property rights in Tokyo, Japan. Focus on environmental technology and sustainable industry."},
-  {id:3, name:"Paris", region:"Europe", pop:11000000, desc:"Green industrial property rights in Paris, France. Focus on sustainable agriculture and water treatment systems."},
-  {id:4, name:"London", region:"Europe", pop:9500000, desc:"Green technology investment opportunity in London, UK. Focus on renewable energy innovation and smart infrastructure."},
-  {id:5, name:"New York", region:"Worldwide", pop:8400000, desc:"Green investment opportunity in New York, USA. Focus on sustainable urban development and green innovation."},
-  {id:6, name:"Madrid", region:"Europe", pop:6700000, desc:"Green investment opportunity in Madrid, Spain. Focus on solar energy and water desalination technology."},
-  {id:7, name:"Berlin", region:"Europe", pop:3600000, desc:"Green investment opportunity in Berlin, Germany. Focus on sustainable urban development and smart city technologies."},
-  {id:8, name:"Dubai", region:"Worldwide", pop:3500000, desc:"Green investment opportunity in Dubai, UAE. Focus on sustainable infrastructure and renewable energy."},
-  {id:9, name:"Milan", region:"Italy", pop:3200000, desc:"Industrial property and green manufacturing opportunity in Milan, Italy. Focus on sustainable production technology."},
-  {id:10, name:"Bergamo", region:"Italy", pop:1200000, desc:"Green industrial property rights opportunity in Bergamo, Italy. Focus on ecological transition and renewable energy. SIDR system for irrigation and drainage."},
-  {id:11, name:"Novara", region:"Italy", pop:1100000, desc:"Ecological transition project in Novara, Italy. Patents and trade secrets for sustainable agriculture and water treatment."},
-  {id:12, name:"Rho (Italy) – S3", region:"Italy", pop:1000000, desc:"Official Prospectus for the Rho Master Plan (S3). Asset Code: IT-S3-Rho_L. A GREEN Industrial Plan for the Ecological Transition."}
+const zones = [
+  {name:"Shanghai", region:"Worldwide", pop:24000000, desc:"Massive green industrial property rights opportunity in Shanghai, China. Focus on renewable energy and pollution control technologies."},
+  {name:"Tokyo", region:"Worldwide", pop:14000000, desc:"Green industrial property rights in Tokyo, Japan. Focus on environmental technology and sustainable industry."},
+  {name:"Paris", region:"Europe", pop:11000000, desc:"Green industrial property rights in Paris, France. Focus on sustainable agriculture and water treatment systems."},
+  {name:"London", region:"Europe", pop:9500000, desc:"Green technology investment opportunity in London, UK. Focus on renewable energy innovation and smart infrastructure."},
+  {name:"New York", region:"Worldwide", pop:8400000, desc:"Green investment opportunity in New York, USA. Focus on sustainable urban development and green innovation."},
+  {name:"Madrid", region:"Europe", pop:6700000, desc:"Green investment opportunity in Madrid, Spain. Focus on solar energy and water desalination technology."},
+  {name:"Berlin", region:"Europe", pop:3600000, desc:"Green investment opportunity in Berlin, Germany. Focus on sustainable urban development and smart city technologies."},
+  {name:"Dubai", region:"Worldwide", pop:3500000, desc:"Green investment opportunity in Dubai, UAE. Focus on sustainable infrastructure and renewable energy."},
+  {name:"Milan", region:"Italy", pop:3200000, desc:"Industrial property and green manufacturing opportunity in Milan, Italy. Focus on sustainable production technology."},
+  {name:"Bergamo", region:"Italy", pop:1200000, desc:"Green industrial property rights opportunity in Bergamo, Italy. Focus on ecological transition and renewable energy. SIDR system for irrigation and drainage."},
+  {name:"Novara", region:"Italy", pop:1100000, desc:"Ecological transition project in Novara, Italy. Patents and trade secrets for sustainable agriculture and water treatment."},
+  {name:"Rho (Italy) – S3", region:"Italy", pop:1000000, desc:"Official Prospectus for the Rho Master Plan (S3). Asset Code: IT-S3-Rho_L. A GREEN Industrial Plan for the Ecological Transition."}
 ];
 
-function loadZones(){
-  const raw = localStorage.getItem(STORAGE_KEY);
-  if(!raw){
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultZones));
-    return JSON.parse(JSON.stringify(defaultZones));
-  }
-  try { return JSON.parse(raw); } catch(e){ return JSON.parse(JSON.stringify(defaultZones)); }
-}
-function saveZones(zones){
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(zones));
-}
-let zones = loadZones();
+const transactionOptions = [
+  {name:"License", desc:"Licensing of IP rights for regional use, with ongoing royalty terms.", icon:"📄"},
+  {name:"Sale", desc:"Full, outright transfer of IP ownership to the acquiring party.", icon:"💰"},
+  {name:"II-SRB", desc:"Strategic investment / partnership structure for shared upside.", icon:"🤝"},
+  {name:"JV-30/21", desc:"Joint venture structure that keeps operational control with the local partner.", icon:"🏢"},
+];
 
 function regionSlug(r){ return r.toLowerCase(); }
 
@@ -346,12 +517,19 @@ function cardHTML(z){
       <div class="dz-card-body">
         <span class="dz-badge region-${regionSlug(z.region)}">${z.region}</span>
         <h3>${z.name}</h3>
-        <span class="dz-pop">👥 Population: ${Number(z.pop).toLocaleString()}</span>
+        <span class="dz-pop">👥 Population: ${z.pop.toLocaleString()}</span>
         <p class="dz-desc">${z.desc}</p>
       </div>
-      <div class="dz-card-footer">
-        <a class="view" data-page="offer">View Opportunity →</a>
-      </div>
+      <div class="dz-card-footer"><a class="view" data-page="worldwide" onclick="goTo('worldwide')">View Opportunity →</a></div>
+    </div>`;
+}
+
+function optionCardHTML(o){
+  return `
+    <div class="opt-card">
+      <div style="font-size:22px;">${o.icon}</div>
+      <h4>${o.name}</h4>
+      <p>${o.desc}</p>
     </div>`;
 }
 
@@ -369,48 +547,39 @@ function renderAllGrid(filter){
 
 function renderStats(){
   const total = zones.length;
-  const pop = zones.reduce((s,z)=>s+Number(z.pop),0);
+  const pop = zones.reduce((s,z)=>s+z.pop,0);
   document.getElementById('stat-total').textContent = total;
   document.getElementById('stat-pop').textContent = pop.toLocaleString();
   document.getElementById('stat-italy').textContent = zones.filter(z=>z.region==='Italy').length;
   document.getElementById('stat-europe').textContent = zones.filter(z=>z.region==='Europe').length;
   document.getElementById('stat-worldwide').textContent = zones.filter(z=>z.region==='Worldwide').length;
+  document.getElementById('home-stat-total').textContent = total;
 }
 
 function renderOfferDropdown(){
   const sel = document.getElementById('df-zone');
-  sel.innerHTML = zones.map(z => `<option value="${z.name}">${z.name} (${z.region}) – ${Number(z.pop).toLocaleString()}</option>`).join('');
+  sel.innerHTML = zones.map(z => `<option value="${z.name}">${z.name} (${z.region}) – ${z.pop.toLocaleString()}</option>`).join('');
 }
 
-function renderAll(){
-  renderRegionGrid('grid-italy', 'Italy');
-  renderRegionGrid('grid-europe', 'Europe');
-  renderRegionGrid('grid-worldwide', 'Worldwide');
-  const activeFilterBtn = document.querySelector('.dz-filter-btn.active');
-  renderAllGrid(activeFilterBtn ? activeFilterBtn.dataset.filter : 'all');
-  renderStats();
-  renderOfferDropdown();
-  renderAdminTable();
+function renderOptionCards(){
+  document.getElementById('home-options').innerHTML = transactionOptions.map(optionCardHTML).join('');
+  document.getElementById('worldwide-options').innerHTML = transactionOptions.map(optionCardHTML).join('');
 }
 
 /* ---- Navigation ---- */
-document.querySelectorAll('.topnav a').forEach(link=>{
-  link.addEventListener('click', ()=>{
-    document.querySelectorAll('.topnav a').forEach(a=>a.classList.remove('active'));
-    link.classList.add('active');
-    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-    document.getElementById('page-' + link.dataset.page).classList.add('active');
-    window.scrollTo({top:0, behavior:'smooth'});
-  });
-});
-document.addEventListener('click', (e)=>{
-  if(e.target.matches('a.view[data-page]')){
-    e.preventDefault();
-    document.querySelector(`.topnav a[data-page="offer"]`).click();
-  }
+function goTo(pageKey){
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  const navLink = document.querySelector(`.nav-links a[data-page="${pageKey}"]`);
+  if(navLink) navLink.classList.add('active');
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-' + pageKey).classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+document.querySelectorAll('.nav-links a').forEach(link=>{
+  link.addEventListener('click', ()=> goTo(link.dataset.page));
 });
 
-/* ---- Filters on Opportunities page ---- */
+/* ---- Filters ---- */
 document.querySelectorAll('.dz-filter-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     document.querySelectorAll('.dz-filter-btn').forEach(b=>b.classList.remove('active'));
@@ -466,108 +635,160 @@ function printOffer(){
   setTimeout(()=>w.print(), 250);
 }
 
-/* ---- Admin table ---- */
-function renderAdminTable(){
-  const tbody = document.getElementById('admin-tbody');
-  tbody.innerHTML = zones.map(z => `
-    <tr data-id="${z.id}">
-      <td><input type="text" class="f-name" value="${z.name.replace(/"/g,'&quot;')}"></td>
-      <td>
-        <select class="f-region">
-          <option value="Italy" ${z.region==='Italy'?'selected':''}>Italy</option>
-          <option value="Europe" ${z.region==='Europe'?'selected':''}>Europe</option>
-          <option value="Worldwide" ${z.region==='Worldwide'?'selected':''}>Worldwide</option>
-        </select>
-      </td>
-      <td><input type="number" class="f-pop" value="${z.pop}"></td>
-      <td><textarea class="f-desc">${z.desc.replace(/</g,'&lt;')}</textarea></td>
-      <td class="row-actions">
-        <button class="save-row">Save</button>
-        <button class="delete-row">Delete</button>
-      </td>
-    </tr>
-  `).join('');
+/* ---- Dream.ZONE Generator (pricing calculator) ---- */
+const genCountries = [
+  {name:'Afghanistan', f:0.102, popM:41.0}, {name:'Albania', f:0.272, popM:3.0}, {name:'Algeria', f:0.15, popM:45.0},
+  {name:'Angola', f:0.073, popM:36.0}, {name:'Argentina', f:0.413, popM:45.0}, {name:'Armenia', f:0.199, popM:3.0},
+  {name:'Australia', f:1.66, popM:26.0}, {name:'Austria', f:1.68, popM:9.0}, {name:'Azerbaijan', f:0.209, popM:10.0},
+  {name:'Bahrain', f:1.039, popM:1.0}, {name:'Bangladesh', f:0.078, popM:171.0}, {name:'Belarus', f:0.277, popM:10.0},
+  {name:'Belgium', f:1.927, popM:12.0}, {name:'Benin', f:0.058, popM:13.0}, {name:'Bhutan', f:0.17, popM:1.0},
+  {name:'Bolivia', f:0.243, popM:12.0}, {name:'Bosnia Herzegovina', f:0.383, popM:3.0}, {name:'Botswana', f:0.248, popM:3.0},
+  {name:'Brazil', f:0.243, popM:215.0}, {name:'Bulgaria', f:0.451, popM:7.0}, {name:'Burkina Faso', f:0.078, popM:23.0},
+  {name:'Burundi', f:0.058, popM:13.0}, {name:'Cambodia', f:0.097, popM:17.0}, {name:'Cameroon', f:0.102, popM:28.0},
+  {name:'Canada', f:1.107, popM:38.0}, {name:'Cape Verde', f:0.131, popM:1.0}, {name:'Central African Republic', f:0.043, popM:6.0},
+  {name:'Chad', f:0.126, popM:18.0}, {name:'Chile', f:0.563, popM:20.0}, {name:'China', f:0.485, popM:1426.0},
+  {name:'Colombia', f:0.121, popM:52.0}, {name:'Congo', f:0.033, popM:99.0}, {name:'Costa Rica', f:0.388, popM:5.0},
+  {name:'Croatia', f:0.558, popM:4.0}, {name:'Cuba', f:0.033, popM:11.0}, {name:'Cyprus', f:0.942, popM:1.0},
+  {name:'Czech Republic', f:0.704, popM:10.0}, {name:'Denmark', f:1.854, popM:6.0}, {name:'Djibouti', f:0.432, popM:1.0},
+  {name:'Dominican', f:0.126, popM:11.0}, {name:'East Timor', f:0.087, popM:1.0}, {name:'Ecuador', f:0.233, popM:18.0},
+  {name:'Egypt', f:0.146, popM:111.0}, {name:'Emirates', f:2.243, popM:9.0}, {name:'Equatorial Guinea', f:0.403, popM:2.0},
+  {name:'Eritrea', f:0.102, popM:4.0}, {name:'Estonia', f:0.772, popM:1.0}, {name:'Ethiopia', f:0.063, popM:123.0},
+  {name:'Fiji', f:1.403, popM:1.0}, {name:'Finland', f:2.141, popM:6.0}, {name:'France', f:1.267, popM:65.0},
+  {name:'Gabon', f:0.252, popM:2.0}, {name:'Gambia', f:0.029, popM:3.0}, {name:'Georgia', f:0.199, popM:4.0},
+  {name:'Germany', f:1.374, popM:83.0}, {name:'Ghana', f:0.16, popM:33.0}, {name:'Great Britain', f:1.398, popM:65.0},
+  {name:'Greece', f:0.505, popM:10.0}, {name:'Guatemala', f:0.282, popM:18.0}, {name:'Guinea', f:0.121, popM:14.0},
+  {name:'Guinea Bissau', f:0.037, popM:2.0}, {name:'Haiti', f:0.427, popM:12.0}, {name:'Holland', f:1.218, popM:18.0},
+  {name:'Honduras', f:0.306, popM:10.0}, {name:'Hong Kong', f:1.01, popM:7.0}, {name:'Hungary', f:0.714, popM:10.0},
+  {name:'India', f:0.058, popM:1417.0}, {name:'Indonesia', f:0.277, popM:276.0}, {name:'Iran', f:0.228, popM:89.0},
+  {name:'Iraq', f:0.155, popM:44.0}, {name:'Irish', f:1.437, popM:5.0}, {name:'Israel', f:1.65, popM:9.0},
+  {name:'Italy', f:1.0, popM:59.0}, {name:'Ivory Coast', f:0.078, popM:28.0}, {name:'Jamaica', f:0.272, popM:3.0},
+  {name:'Japan', f:1.447, popM:124.0}, {name:'Jordan', f:0.306, popM:11.0}, {name:'Kazakhstan', f:0.296, popM:19.0},
+  {name:'Kenya', f:0.175, popM:54.0}, {name:'Korea', f:1.636, popM:52.0}, {name:'Kosovo', f:0.214, popM:2.0},
+  {name:'Kuwait', f:2.252, popM:4.0}, {name:'Kyrgyzstan', f:0.277, popM:7.0}, {name:'Laos', f:0.117, popM:8.0},
+  {name:'Latvian', f:0.544, popM:2.0}, {name:'Lebanon', f:0.277, popM:5.0}, {name:'Lesotho', f:0.058, popM:2.0},
+  {name:'Liberia', f:0.022, popM:5.0}, {name:'Libya', f:0.146, popM:7.0}, {name:'Lithuania', f:0.583, popM:3.0},
+  {name:'Luxembourg', f:1.947, popM:1.0}, {name:'Madagascar', f:0.032, popM:30.0}, {name:'Malawi', f:0.033, popM:20.0},
+  {name:'Malaysia', f:0.364, popM:34.0}, {name:'Maldives', f:0.325, popM:1.0}, {name:'Mali', f:0.053, popM:23.0},
+  {name:'Malta', f:0.811, popM:1.0}, {name:'Mauritania', f:0.189, popM:5.0}, {name:'Mauritius', f:0.257, popM:1.0},
+  {name:'Mexico', f:0.233, popM:128.0}, {name:'Moldova', f:0.136, popM:3.0}, {name:'Mongolia', f:0.228, popM:3.0},
+  {name:'Montenegro', f:0.282, popM:1.0}, {name:'Morocco', f:0.223, popM:37.0}, {name:'Mozambique', f:0.141, popM:33.0},
+  {name:'Myanmar', f:0.097, popM:54.0}, {name:'Namibia', f:0.073, popM:3.0}, {name:'Nepal', f:0.136, popM:31.0},
+  {name:'New Zealand', f:1.786, popM:5.0}, {name:'Niger', f:0.165, popM:26.0}, {name:'Nigeria', f:0.17, popM:219.0},
+  {name:'Norway', f:2.728, popM:5.0}, {name:'Oman', f:0.874, popM:5.0}, {name:'Pakistan', f:0.102, popM:236.0},
+  {name:'Palestine', f:0.325, popM:5.0}, {name:'Panama', f:0.607, popM:4.0}, {name:'Paraguay', f:0.214, popM:7.0},
+  {name:'Peru', f:0.223, popM:34.0}, {name:'Philippines', f:0.097, popM:116.0}, {name:'Poland', f:0.607, popM:40.0},
+  {name:'Portugal', f:0.704, popM:10.0}, {name:'Qatar', f:1.617, popM:3.0}, {name:'Romania', f:0.451, popM:20.0},
+  {name:'Russia', f:0.325, popM:145.0}, {name:'Rwanda', f:0.112, popM:14.0}, {name:'Salvador', f:0.209, popM:6.0},
+  {name:'Saudi Arabia', f:1.364, popM:36.0}, {name:'Senegal', f:0.083, popM:17.0}, {name:'Serbia', f:0.316, popM:7.0},
+  {name:'Sierra Leone', f:0.037, popM:9.0}, {name:'Singapore', f:2.282, popM:6.0}, {name:'Slovakia', f:0.675, popM:2.0},
+  {name:'Somalia', f:0.058, popM:18.0}, {name:'South Africa', f:0.816, popM:60.0}, {name:'Spain', f:0.995, popM:48.0},
+  {name:'Sri Lanka', f:0.141, popM:22.0}, {name:'Sudan', f:0.02, popM:11.0}, {name:'Sweden', f:1.947, popM:11.0},
+  {name:'Switzerland', f:2.573, popM:9.0}, {name:'Syria', f:0.02, popM:22.0}, {name:'Taiwan', f:0.772, popM:24.0},
+  {name:'Tajikistan', f:0.087, popM:10.0}, {name:'Tanzania', f:0.078, popM:66.0}, {name:'Thailand', f:0.214, popM:72.0},
+  {name:'Togo', f:0.029, popM:9.0}, {name:'Trinidad and Tobago', f:0.617, popM:2.0}, {name:'Tunisia', f:0.092, popM:12.0},
+  {name:'Turkey', f:0.199, popM:84.0}, {name:'Turkmenistan', f:0.146, popM:6.0}, {name:'Uganda', f:0.112, popM:47.0},
+  {name:'Ukraine', f:0.248, popM:40.0}, {name:'Uruguay', f:0.403, popM:3.0}, {name:'USA', f:1.65, popM:338.0},
+  {name:'Uzbekistan', f:0.175, popM:35.0}, {name:'Venezuela', f:0.012, popM:28.0}, {name:'Vietnam', f:0.136, popM:98.0},
+  {name:'Yemen', f:0.058, popM:37.0}, {name:'Zambia', f:0.204, popM:20.0}, {name:'Zimbabwe', f:0.117, popM:16.0}
+];
+
+const genProducts = [
+  {code:'J0', name:'Master Plan', base:null},
+  {code:'J1', name:'ITEG', base:2},
+  {code:'J2', name:'MBGC', base:1},
+  {code:'J3', name:'PBRC', base:2},
+  {code:'J4', name:'SIDR', base:1},
+  {code:'J5', name:'SDGC', base:1},
+  {code:'J6', name:'GSMF', base:1},
+  {code:'J7', name:'GFSS', base:2},
+  {code:'J8', name:'PCRR', base:1},
+];
+
+function isoGuess(name){
+  const map = {'Great Britain':'GB','USA':'US','Emirates':'AE','Holland':'NL','Irish':'IE','Switzerland':'CH','South Africa':'ZA','South Korea':'KR','Korea':'KR','New Zealand':'NZ','Saudi Arabia':'SA','Czech Republic':'CZ'};
+  if(map[name]) return map[name];
+  return name.substring(0,2).toUpperCase();
 }
 
-document.getElementById('admin-tbody').addEventListener('click', (e)=>{
-  const row = e.target.closest('tr');
-  if(!row) return;
-  const id = Number(row.dataset.id);
-  if(e.target.classList.contains('save-row')){
-    const idx = zones.findIndex(z=>z.id===id);
-    if(idx > -1){
-      zones[idx] = {
-        id: id,
-        name: row.querySelector('.f-name').value.trim() || 'Untitled',
-        region: row.querySelector('.f-region').value,
-        pop: Number(row.querySelector('.f-pop').value) || 0,
-        desc: row.querySelector('.f-desc').value.trim()
-      };
-      saveZones(zones);
-      renderAll();
-      alert('Saved.');
-    }
+function populateGeneratorDropdowns(){
+  const countrySel = document.getElementById('gen-country');
+  countrySel.innerHTML = genCountries.map(c => `<option value="${c.name}">${c.name}</option>`).join('');
+  countrySel.value = 'Italy';
+
+  const productSel = document.getElementById('gen-product');
+  productSel.innerHTML = genProducts.map(p => `<option value="${p.code}">${p.code} — ${p.name}</option>`).join('');
+
+  productSel.addEventListener('change', ()=>{
+    document.getElementById('masterplan-field').style.display = productSel.value === 'J0' ? 'block' : 'none';
+  });
+}
+
+function fmtEUR(n){
+  return '€' + Math.round(n).toLocaleString('en-US');
+}
+
+document.getElementById('gen-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  const countryName = document.getElementById('gen-country').value;
+  const city = document.getElementById('gen-city').value.trim() || 'City';
+  const popM = parseFloat(document.getElementById('gen-pop').value) || 1;
+  const productCode = document.getElementById('gen-product').value;
+  const country = genCountries.find(c => c.name === countryName);
+  const product = genProducts.find(p => p.code === productCode);
+  const iso = isoGuess(countryName);
+
+  let baseM = product.base;
+  if(productCode === 'J0'){
+    baseM = parseFloat(document.getElementById('gen-masterplan-val').value) || 8;
   }
-  if(e.target.classList.contains('delete-row')){
-    if(confirm('Delete this Dream.ZONE entry?')){
-      zones = zones.filter(z=>z.id!==id);
-      saveZones(zones);
-      renderAll();
-    }
-  }
+
+  // Core formula reverse-engineered from EUWEB_WP_model.xls:
+  // Zone Value (M€) = Country Factor (f) x City Population (M) x Product Base Value (M€)
+  const zoneValueM = country.f * popM * baseM;
+  const zoneValueEUR = zoneValueM * 1000000;
+
+  const structures = [
+    {label:'License €/y', letter:'L', mult:0.05},
+    {label:'Sale RP €', letter:'S', mult:3},
+    {label:'II-SRB €', letter:'I', mult:1},
+    {label:'JV-30/21 €', letter:'J', mult:1},
+  ];
+
+  let rows = '';
+  structures.forEach(s=>{
+    const contract = zoneValueEUR * s.mult;
+    const buy1 = contract * 0.01;
+    const bbFee01 = contract * 0.001;
+    const bbFeeRate = s.letter === 'L' ? 0.10 : 0.02;
+    const bbFee = contract * bbFeeRate;
+    const code = `${iso}-${productCode}-${city.replace(/\s+/g,'')}_${s.letter}`;
+    rows += `<tr>
+      <td>${s.label}</td>
+      <td>${fmtEUR(contract)}</td>
+      <td>${fmtEUR(buy1)}</td>
+      <td>${fmtEUR(bbFee01)}</td>
+      <td>${fmtEUR(bbFee)}</td>
+      <td style="font-family:'Orbitron',sans-serif; font-size:11.5px;">${code}</td>
+    </tr>`;
+  });
+
+  document.getElementById('gen-code-summary').textContent = `${iso}-${productCode}-${city.replace(/\s+/g,'')}`;
+  document.getElementById('gen-zone-val').textContent = `Dream.ZONE Value: ${zoneValueM.toFixed(3)} M€ (${fmtEUR(zoneValueEUR)}) — Country: ${countryName} (f=${country.f}) × Population: ${popM}M × Product ${productCode} Base: ${baseM}M€`;
+  document.getElementById('gen-table-body').innerHTML = rows;
+  document.getElementById('gen-results').style.display = 'block';
+  document.getElementById('gen-results').scrollIntoView({behavior:'smooth', block:'nearest'});
 });
 
-document.getElementById('add-row-btn').addEventListener('click', ()=>{
-  const newId = zones.length ? Math.max(...zones.map(z=>z.id)) + 1 : 1;
-  zones.push({id:newId, name:"New Dream.ZONE", region:"Italy", pop:1000000, desc:"Describe this opportunity here."});
-  saveZones(zones);
-  renderAll();
-  document.querySelector(`.topnav a[data-page="admin"]`).click();
-});
+populateGeneratorDropdowns();
 
-document.getElementById('reset-btn').addEventListener('click', ()=>{
-  if(confirm('Reset all data back to the original 12 sample Dream.ZONEs? This cannot be undone.')){
-    zones = JSON.parse(JSON.stringify(defaultZones));
-    saveZones(zones);
-    renderAll();
-  }
-});
-
-document.getElementById('export-btn').addEventListener('click', ()=>{
-  const blob = new Blob([JSON.stringify(zones, null, 2)], {type:'application/json'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = 'dreamzones-backup.json';
-  a.click();
-  URL.revokeObjectURL(url);
-});
-
-document.getElementById('import-btn').addEventListener('click', ()=>{
-  document.getElementById('import-file').click();
-});
-document.getElementById('import-file').addEventListener('change', (e)=>{
-  const file = e.target.files[0];
-  if(!file) return;
-  const reader = new FileReader();
-  reader.onload = function(evt){
-    try{
-      const imported = JSON.parse(evt.target.result);
-      if(Array.isArray(imported)){
-        zones = imported;
-        saveZones(zones);
-        renderAll();
-        alert('Import successful.');
-      } else {
-        alert('Invalid file format.');
-      }
-    } catch(err){
-      alert('Could not read file: ' + err.message);
-    }
-  };
-  reader.readAsText(file);
-});
-
-renderAll();
+/* ---- Init ---- */
+renderRegionGrid('grid-italy', 'Italy');
+renderRegionGrid('grid-europe', 'Europe');
+renderRegionGrid('grid-worldwide', 'Worldwide');
+renderAllGrid('all');
+renderStats();
+renderOfferDropdown();
+renderOptionCards();
 </script>
 
 </body>
